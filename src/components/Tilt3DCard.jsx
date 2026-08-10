@@ -15,9 +15,10 @@ export default function Tilt3DCard({ children, className = '', maxTilt = 12 }) {
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
+    const maxDimension = Math.max(rect.width, rect.height) || 300;
 
-    const rotateX = ((y - centerY) / centerY) * -maxTilt;
-    const rotateY = ((x - centerX) / centerX) * maxTilt;
+    const rotateX = ((y - centerY) / maxDimension) * -maxTilt * 2;
+    const rotateY = ((x - centerX) / maxDimension) * maxTilt * 2;
 
     const glareX = (x / rect.width) * 100;
     const glareY = (y / rect.height) * 100;
