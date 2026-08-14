@@ -2,39 +2,51 @@ import React, { useRef, useEffect } from 'react';
 
 export default function Hero3DCanvas() {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
 
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let width = canvas.offsetWidth;
-    let height = canvas.offsetHeight;
+    let width = 0;
+    let height = 0;
 
     const updateCanvasSize = () => {
-      if (!canvas) return;
+      if (!canvas || !container) return;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = canvas.offsetWidth;
-      height = canvas.offsetHeight;
+      // Use container's bounding rect for reliable dimensions on any host
+      const rect = container.getBoundingClientRect();
+      width = Math.max(rect.width, 1);
+      height = Math.max(rect.height, 1);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
     };
 
     updateCanvasSize();
 
-    const handleResize = () => updateCanvasSize();
-    window.addEventListener('resize', handleResize);
+    // Use ResizeObserver for robust resize handling (works in iframes/subpaths)
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => updateCanvasSize());
+      resizeObserver.observe(container);
+    }
+    window.addEventListener('resize', updateCanvasSize);
 
+    // Mouse tracking
     let targetRotationX = 0;
     let targetRotationY = 0;
     let rotationX = 0;
     let rotationY = 0;
 
     const handleMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       const x = e.clientX - rect.left - width / 2;
       const y = e.clientY - rect.top - height / 2;
       const minDim = Math.min(width, height) || 400;
@@ -74,6 +86,12 @@ export default function Hero3DCanvas() {
     let globalAngle = 0;
 
     const render = () => {
+      if (width <= 0 || height <= 0) {
+        updateCanvasSize();
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+
       ctx.save();
       ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, width, height);
@@ -198,26 +216,35 @@ export default function Hero3DCanvas() {
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    // Delay initial render slightly to let layout settle (fixes GitHub Pages)
+    requestAnimationFrame(() => {
+      updateCanvasSize();
+      render();
+    });
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', handleResize);
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener('resize', updateCanvasSize);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-[400px] flex items-center justify-center overflow-hidden">
+    <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden">
       <canvas
         ref={canvasRef}
-        className="w-full h-full absolute inset-0 cursor-grab active:cursor-grabbing block"
+        className="block cursor-grab active:cursor-grabbing"
       />
       {/* Orbiting rings */}
-      <div className="pointer-events-none absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full border border-purple-500/20 animate-orbit">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50" />
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full border border-purple-500/20 animate-orbit">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50" />
+        </div>
       </div>
-      <div className="pointer-events-none absolute w-32 h-32 sm:w-44 sm:h-44 rounded-full border border-dashed border-fuchsia-500/15" style={{ animation: 'orbitRotate 35s linear infinite reverse' }} />
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="w-32 h-32 sm:w-44 sm:h-44 rounded-full border border-dashed border-fuchsia-500/15" style={{ animation: 'orbitRotate 35s linear infinite reverse' }} />
+      </div>
     </div>
   );
 }
