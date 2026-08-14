@@ -22,6 +22,25 @@ export default function App() {
     }
   }, [activePage]);
 
+  // Global scroll-reveal observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    const revealElements = document.querySelectorAll('.reveal, .stagger-children');
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  });
+
   const renderPage = () => {
     switch (activePage) {
       case 'home':
@@ -40,33 +59,28 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFE] text-[#0F172A] flex flex-col font-sans selection:bg-[#C026D3] selection:text-white relative">
+    <div className="min-h-screen bg-[#09090B] text-[#A1A1AA] flex flex-col font-sans relative">
       
-      {/* Sticky Navigation Bar */}
       <Navbar
         activePage={activePage}
         setActivePage={setActivePage}
         onOpenConsultation={() => setIsConsultationOpen(true)}
       />
 
-      {/* Main View Area */}
       <main className="flex-grow">
         {renderPage()}
       </main>
 
-      {/* Footer */}
       <Footer
         setActivePage={setActivePage}
         onOpenConsultation={() => setIsConsultationOpen(true)}
       />
 
-      {/* Global Interactive Strategy Consultation Modal */}
       <StrategyModal
         isOpen={isConsultationOpen}
         onClose={() => setIsConsultationOpen(false)}
       />
 
-      {/* Floating WhatsApp Live Inquiry Widget */}
       <WhatsAppWidget />
 
     </div>

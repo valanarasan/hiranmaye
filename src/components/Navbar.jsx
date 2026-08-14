@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function Navbar({ activePage, setActivePage, onOpenConsultation }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
-    { id: 'services', label: 'Services (11)' },
-    { id: 'blog', label: 'Blog / Insights' },
-    { id: 'contact', label: 'Contact Us' }
+    { id: 'about', label: 'About' },
+    { id: 'services', label: 'Services' },
+    { id: 'blog', label: 'Insights' },
+    { id: 'contact', label: 'Contact' }
   ];
 
   const handleNavClick = (id) => {
@@ -28,8 +26,8 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-nav-light py-3 shadow-md' : 'bg-transparent py-5'}`}>
-      <div className="w-full px-4 sm:px-8 lg:px-12 2xl:px-16">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-nav-dark py-3' : 'bg-transparent py-5'}`}>
+      <div className="w-full px-4 sm:px-8 lg:px-16 2xl:px-20">
         <div className="flex items-center justify-between">
           
           {/* Logo */}
@@ -37,33 +35,26 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
             onClick={() => handleNavClick('home')}
             className="flex items-center space-x-3 cursor-pointer group"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-700 via-fuchsia-600 to-sky-500 p-0.5 shadow-md shadow-purple-900/20 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
-                <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-fuchsia-600 text-xl">H</span>
-              </div>
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 via-purple-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
+              <span className="font-black text-white text-lg">H</span>
             </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-extrabold tracking-tight text-slate-900 group-hover:text-purple-700 transition-colors">
-                HIRANMAYE <span className="gradient-text-plum">DIGITAL</span>
-              </span>
-              <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">
-                Strategic Growth Agency
-              </span>
-            </div>
+            <span className="text-lg font-extrabold tracking-tight text-white group-hover:text-purple-300 transition-colors">
+              HIRANMAYE
+            </span>
           </div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-1.5 bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-purple-100 shadow-sm">
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center space-x-1 px-2 py-1 rounded-full border border-white/[0.06] bg-white/[0.03] backdrop-blur-md">
             {navLinks.map((link) => {
               const isActive = activePage === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? 'bg-gradient-to-r from-purple-800 to-fuchsia-600 text-white shadow-md shadow-purple-900/20'
-                      : 'text-slate-600 hover:text-purple-900 hover:bg-purple-50/70'
+                      ? 'bg-white/10 text-white'
+                      : 'text-zinc-400 hover:text-white'
                   }`}
                 >
                   {link.label}
@@ -72,32 +63,31 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
             })}
           </nav>
 
-          {/* Primary Action Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* CTA */}
+          <div className="hidden lg:block">
             <button
               onClick={onOpenConsultation}
-              className="btn-glow-plum px-5 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center space-x-2 cursor-pointer shadow-lg"
+              className="btn-glow px-5 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center space-x-2"
             >
-              <Sparkles className="w-4 h-4 text-fuchsia-200 animate-pulse" />
-              <span>Free Consultation</span>
-              <ArrowRight className="w-4 h-4 ml-0.5" />
+              <span>Get Started</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile */}
           <div className="flex md:hidden items-center space-x-2">
             <button
               onClick={onOpenConsultation}
-              className="px-3 py-1.5 rounded-lg bg-purple-100 text-purple-800 text-xs font-bold border border-purple-200"
+              className="px-3 py-1.5 rounded-lg bg-purple-500/20 text-purple-300 text-xs font-bold border border-purple-500/30 cursor-pointer"
             >
-              Consult
+              Start
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-white text-slate-700 border border-purple-100 shadow-sm focus:outline-none"
+              className="p-2.5 rounded-xl bg-white/[0.04] text-zinc-300 border border-white/[0.06] cursor-pointer"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6 text-purple-800" /> : <Menu className="w-6 h-6 text-slate-700" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -105,31 +95,26 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-panel-light border-b border-purple-100 px-4 pt-4 pb-6 mt-3 space-y-2 shadow-2xl animate-fadeIn">
+        <div className="md:hidden glass-dark border-t border-white/[0.06] px-4 pt-4 pb-6 mt-2 space-y-1 animate-fade-in">
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => handleNavClick(link.id)}
-              className={`w-full text-left px-4 py-3 rounded-xl text-base font-bold flex items-center justify-between ${
+              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium cursor-pointer ${
                 activePage === link.id
-                  ? 'bg-purple-100 text-purple-900 border border-purple-200'
-                  : 'text-slate-700 hover:bg-purple-50'
+                  ? 'bg-white/[0.06] text-white'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.03]'
               }`}
             >
-              <span>{link.label}</span>
-              {activePage === link.id && <ArrowRight className="w-4 h-4 text-purple-800" />}
+              {link.label}
             </button>
           ))}
           <div className="pt-3">
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenConsultation();
-              }}
-              className="w-full btn-glow-plum py-3 text-center text-sm font-bold uppercase tracking-wider flex items-center justify-center space-x-2 shadow-lg"
+              onClick={() => { setMobileMenuOpen(false); onOpenConsultation(); }}
+              className="w-full btn-glow py-3 text-center text-sm font-bold uppercase tracking-wider"
             >
-              <Sparkles className="w-4 h-4 text-fuchsia-200" />
-              <span>Book Free Strategy Consultation</span>
+              Get Started
             </button>
           </div>
         </div>
