@@ -35,7 +35,7 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           2. VISION + MISSION — Two glass cards
           ============================================ */}
-      <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-16">
+      <section className="py-12 sm:py-18 px-4 sm:px-8 lg:px-16">
         <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           <Tilt3DCard maxTilt={8}>
             <div className="glass-dark glass-dark-hover rounded-2xl p-8 sm:p-10 border-zinc-200 h-full space-y-4">
@@ -66,7 +66,7 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           3. VALUES — Minimal icon cards
           ============================================ */}
-      <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-16">
+      <section className="py-12 sm:py-18 px-4 sm:px-8 lg:px-16">
         <div className="reveal text-center mb-12">
           <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
             Our Values

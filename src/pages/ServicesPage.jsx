@@ -45,7 +45,7 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           2. SERVICES GRID
           ============================================ */}
-      <section className="py-8 sm:py-16 px-4 sm:px-8 lg:px-16">
+      <section className="py-8 sm:py-12 px-4 sm:px-8 lg:px-16">
         <div className="stagger-children grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
           {servicesData.map((srv, idx) => {
             const IconComp = iconMap[srv.id] || Target;

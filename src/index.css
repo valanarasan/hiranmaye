@@ -521,19 +521,19 @@ h6 {
    ======================================== */
 
 .section-cinematic {
-  min-height: 80vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 6rem 1rem;
+  padding: 4.5rem 1rem;
 }
 
 @media (max-width: 768px) {
   .section-cinematic {
     min-height: auto;
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
   }
 }
 

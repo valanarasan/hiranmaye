@@ -53,7 +53,7 @@ export default function WhatsAppWidget() {
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="flex-1 input-dark text-xs py-2"
+              className="flex-1 input-dark text-xs !py-2"
             />
             <button
               onClick={handleSend}

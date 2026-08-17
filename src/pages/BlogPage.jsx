@@ -46,7 +46,7 @@ export default function BlogPage({ onOpenConsultation }) {
               placeholder="Search articles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full input-dark pl-11 py-3 text-sm rounded-xl"
+              className="w-full input-dark !pl-11 py-3 text-sm rounded-xl"
             />
           </div>
 
@@ -73,7 +73,7 @@ export default function BlogPage({ onOpenConsultation }) {
       </section>
 
       {/* ARTICLES GRID */}
-      <section className="py-8 sm:py-16 px-4 sm:px-8 lg:px-16">
+      <section className="py-8 sm:py-12 px-4 sm:px-8 lg:px-16">
         <div className="stagger-children grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
           {filteredArticles.map((art) => (
             <Tilt3DCard key={art.id} maxTilt={8}>
@@ -106,7 +106,7 @@ export default function BlogPage({ onOpenConsultation }) {
       </section>
 
       {/* NEWSLETTER */}
-      <section className="py-16 px-4 sm:px-8 lg:px-16">
+      <section className="py-12 px-4 sm:px-8 lg:px-16">
         <div className="reveal glass-dark rounded-2xl p-8 sm:p-12 border-zinc-200 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
@@ -140,7 +140,7 @@ export default function BlogPage({ onOpenConsultation }) {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 px-4 sm:px-8 lg:px-16">
+      <section className="py-12 px-4 sm:px-8 lg:px-16">
         <div className="reveal max-w-3xl mx-auto space-y-3">
           <h3 className="text-xl font-bold text-zinc-900 mb-6">FAQ</h3>
           {blogContent.faqs.map((faq, idx) => {

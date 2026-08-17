@@ -89,7 +89,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           3. SERVICES — 4 Pillar Cards
           ============================================ */}
-      <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
+      <section className="py-14 sm:py-20 px-4 sm:px-8 lg:px-16 relative">
         <div className="glow-accent -left-40 top-1/2 -translate-y-1/2" />
 
         <div className="reveal text-center mb-12 sm:mb-16">
@@ -194,7 +194,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           6. INDUSTRIES — Auto-scrolling marquee
           ============================================ */}
-      <section className="py-20 sm:py-28 relative overflow-hidden">
+      <section className="py-14 sm:py-20 relative overflow-hidden">
         <div className="reveal text-center mb-12 px-4 sm:px-8">
           <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
             Industries We Serve

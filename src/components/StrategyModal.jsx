@@ -128,19 +128,19 @@ export default function StrategyModal({ isOpen, onClose }) {
                 <div className="grid grid-cols-2 gap-3">
                   <div className="relative">
                     <User className="w-3.5 h-3.5 absolute left-3 top-3 text-zinc-600" />
-                    <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="Full Name" className="w-full input-dark pl-9 text-sm" />
+                    <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="Full Name" className="w-full input-dark !pl-9 text-sm" />
                   </div>
                   <div className="relative">
                     <Mail className="w-3.5 h-3.5 absolute left-3 top-3 text-zinc-600" />
-                    <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="Email" className="w-full input-dark pl-9 text-sm" />
+                    <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="Email" className="w-full input-dark !pl-9 text-sm" />
                   </div>
                   <div className="relative">
                     <Phone className="w-3.5 h-3.5 absolute left-3 top-3 text-zinc-600" />
-                    <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} placeholder="Phone" className="w-full input-dark pl-9 text-sm" />
+                    <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} placeholder="Phone" className="w-full input-dark !pl-9 text-sm" />
                   </div>
                   <div className="relative">
                     <Building className="w-3.5 h-3.5 absolute left-3 top-3 text-zinc-600" />
-                    <input type="text" name="company" value={formData.company} onChange={handleChange} placeholder="Company" className="w-full input-dark pl-9 text-sm" />
+                    <input type="text" name="company" value={formData.company} onChange={handleChange} placeholder="Company" className="w-full input-dark !pl-9 text-sm" />
                   </div>
                 </div>
 
