@@ -1,30 +1,12 @@
 import React from 'react';
-import { ArrowRight, Target, TrendingUp, Cpu, Palette, Search, Share2, Layout, Zap, Bot, Briefcase, Layers, FileText } from 'lucide-react';
-import { companyDetails, processSteps, servicesData, industriesServed } from '../data/siteData';
+import { ArrowRight, Target, Palette, Search, Zap } from 'lucide-react';
+import { companyDetails, processSteps, industriesServed } from '../data/siteData';
 import Hero3DCanvas from '../components/Hero3DCanvas';
 import Tilt3DCard from '../components/Tilt3DCard';
 import Process3DPipeline from '../components/Process3DPipeline';
 import ROICalculator3D from '../components/ROICalculator3D';
-import Industry3DGrid from '../components/Industry3DGrid';
 
-const iconComponents = {
-  Target, TrendingUp, Cpu, Palette, Search, Share2, Layout, Zap, Bot, Briefcase, Layers, FileText
-};
 
-// Short service labels for the minimal card grid
-const serviceShortLabels = {
-  'digital-strategy': { label: 'Strategy', icon: 'Target' },
-  'social-media': { label: 'Social Media', icon: 'Share2' },
-  'web-development': { label: 'Web Design', icon: 'Layout' },
-  'branding-design': { label: 'Branding', icon: 'Palette' },
-  'content-marketing': { label: 'Content', icon: 'FileText' },
-  'performance-marketing': { label: 'Performance', icon: 'Zap' },
-  'ai-marketing': { label: 'AI Marketing', icon: 'Bot' },
-  'seo-aeo-geo': { label: 'SEO · AEO · GEO', icon: 'Search' },
-  'meta-google-ads': { label: 'Paid Ads', icon: 'Target' },
-  'business-consulting': { label: 'Consulting', icon: 'Briefcase' },
-  'outdoor-branding': { label: 'Outdoor', icon: 'Layers' }
-};
 
 export default function HomePage({ setActivePage, onOpenConsultation }) {
   return (
@@ -105,7 +87,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
       </section>
 
       {/* ============================================
-          3. SERVICES — Horizontal scrolling cards
+          3. SERVICES — 4 Pillar Cards
           ============================================ */}
       <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
         <div className="glow-accent -left-40 top-1/2 -translate-y-1/2" />
@@ -116,44 +98,73 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
           </h2>
         </div>
 
-        <div className="reveal overflow-x-auto scrollbar-none pb-4 -mx-4 px-4">
-          <div className="stagger-children flex space-x-4 min-w-max">
-            {servicesData.slice(0, 8).map((srv) => {
-              const shortInfo = serviceShortLabels[srv.id] || { label: srv.title, icon: 'Target' };
-              const IconComp = iconComponents[shortInfo.icon] || Target;
-              return (
-                <Tilt3DCard key={srv.id} maxTilt={10}>
-                  <div
-                    onClick={() => { setActivePage('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                    className="w-40 sm:w-48 h-52 sm:h-60 rounded-2xl glass-dark glass-dark-hover border-white/[0.04] p-5 sm:p-6 flex flex-col justify-between cursor-pointer group"
-                  >
-                    <div className="w-11 h-11 rounded-xl bg-white/[0.04] text-zinc-500 flex items-center justify-center group-hover:bg-purple-500/20 group-hover:text-purple-400 transition-all">
-                      <IconComp className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-purple-300 transition-colors">
-                        {shortInfo.label}
-                      </h3>
-                      <div className="flex items-center space-x-1 text-[10px] text-zinc-600 mt-1 group-hover:text-purple-400/60 transition-colors">
-                        <span>Explore</span>
-                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
+        <div className="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto">
+          {[
+            {
+              title: 'Strategy & Growth',
+              icon: Target,
+              gradient: 'from-violet-600 to-purple-500',
+              shadowColor: 'shadow-violet-500/20',
+              services: ['Digital Strategy', 'Consulting', 'Market Analysis']
+            },
+            {
+              title: 'Search & AI',
+              icon: Search,
+              gradient: 'from-purple-600 to-fuchsia-500',
+              shadowColor: 'shadow-purple-500/20',
+              services: ['SEO · AEO · GEO', 'AI Marketing', 'Content Strategy']
+            },
+            {
+              title: 'Creative & Brand',
+              icon: Palette,
+              gradient: 'from-fuchsia-600 to-rose-500',
+              shadowColor: 'shadow-fuchsia-500/20',
+              services: ['Branding', 'Web Design', 'Outdoor Media']
+            },
+            {
+              title: 'Performance',
+              icon: Zap,
+              gradient: 'from-cyan-500 to-blue-500',
+              shadowColor: 'shadow-cyan-500/20',
+              services: ['Meta & Google Ads', 'Social Media', 'Performance Marketing']
+            }
+          ].map((pillar) => {
+            const IconComp = pillar.icon;
+            return (
+              <Tilt3DCard key={pillar.title} maxTilt={8}>
+                <div
+                  onClick={() => { setActivePage('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  className="glass-dark glass-dark-hover rounded-2xl p-6 sm:p-8 border-white/[0.04] cursor-pointer group h-full flex flex-col"
+                >
+                  {/* Icon with gradient bg */}
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${pillar.gradient} flex items-center justify-center mb-5 shadow-lg ${pillar.shadowColor} group-hover:scale-110 transition-transform`}>
+                    <IconComp className="w-5 h-5 text-white" />
                   </div>
-                </Tilt3DCard>
-              );
-            })}
-          </div>
-        </div>
 
-        <div className="reveal text-center mt-8">
-          <button
-            onClick={() => { setActivePage('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="btn-ghost px-6 py-3 text-xs uppercase tracking-wider font-medium inline-flex items-center space-x-2"
-          >
-            <span>View All 11 Services</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+                  {/* Title */}
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-4 group-hover:text-purple-200 transition-colors">
+                    {pillar.title}
+                  </h3>
+
+                  {/* Sub-services list */}
+                  <ul className="space-y-2 flex-grow">
+                    {pillar.services.map(s => (
+                      <li key={s} className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors flex items-center space-x-2">
+                        <span className="w-1 h-1 rounded-full bg-purple-500/50 shrink-0" />
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Arrow */}
+                  <div className="flex items-center space-x-1 text-[10px] text-zinc-600 mt-5 group-hover:text-purple-400 transition-colors">
+                    <span>Explore</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1.5 transition-transform" />
+                  </div>
+                </div>
+              </Tilt3DCard>
+            );
+          })}
         </div>
       </section>
 
@@ -181,17 +192,46 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
       </section>
 
       {/* ============================================
-          6. INDUSTRIES — Icon grid
+          6. INDUSTRIES — Auto-scrolling marquee
           ============================================ */}
-      <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
-        <div className="reveal text-center mb-12">
+      <section className="py-20 sm:py-28 relative overflow-hidden">
+        <div className="reveal text-center mb-12 px-4 sm:px-8">
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
             Industries We Serve
           </h2>
         </div>
-        <div className="reveal">
-          <Industry3DGrid industries={industriesServed} />
+
+        {/* Marquee Row 1 — scrolls left */}
+        <div className="relative mb-4">
+          <div className="flex animate-marquee-left">
+            {[...industriesServed, ...industriesServed].map((ind, idx) => (
+              <div
+                key={`r1-${idx}`}
+                className="shrink-0 mx-2 px-6 py-3 rounded-full border border-white/[0.06] bg-white/[0.02] text-sm font-medium text-zinc-400 hover:text-white hover:border-purple-500/40 hover:bg-purple-500/10 transition-all duration-300 cursor-default whitespace-nowrap"
+              >
+                {ind.name}
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Marquee Row 2 — scrolls right */}
+        <div className="relative">
+          <div className="flex animate-marquee-right">
+            {[...industriesServed.slice().reverse(), ...industriesServed.slice().reverse()].map((ind, idx) => (
+              <div
+                key={`r2-${idx}`}
+                className="shrink-0 mx-2 px-6 py-3 rounded-full border border-white/[0.06] bg-white/[0.02] text-sm font-medium text-zinc-400 hover:text-white hover:border-fuchsia-500/40 hover:bg-fuchsia-500/10 transition-all duration-300 cursor-default whitespace-nowrap"
+              >
+                {ind.name}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Edge fades */}
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#09090B] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#09090B] to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* ============================================

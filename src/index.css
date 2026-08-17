@@ -237,6 +237,16 @@ h1, h2, h3, h4, h5, h6 {
   50% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.5), 0 0 60px rgba(168, 85, 247, 0.2); }
 }
 
+@keyframes marqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
 .animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
 .animate-float-gentle { animation: floatGentle 8s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulseGlow 5s ease-in-out infinite; }
@@ -245,6 +255,10 @@ h1, h2, h3, h4, h5, h6 {
 .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
 .animate-scale-in { animation: scaleIn 0.5s ease-out forwards; }
 .animate-neon-pulse { animation: neonPulse 3s ease-in-out infinite; }
+.animate-marquee-left { animation: marqueeLeft 30s linear infinite; }
+.animate-marquee-right { animation: marqueeRight 30s linear infinite; }
+.animate-marquee-left:hover,
+.animate-marquee-right:hover { animation-play-state: paused; }
 
 /* Scroll Reveal — elements start hidden, appear on intersection */
 .reveal {
