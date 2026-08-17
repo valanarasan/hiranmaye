@@ -21,7 +21,7 @@ export default function ContactPage({ onOpenConsultation }) {
     <div className="relative w-full">
 
       {/* HERO */}
-      <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative">
+      <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative pt-32 pb-16">
         <div className="glow-top" />
         <div className="reveal text-center space-y-4 relative z-10">
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-zinc-900">

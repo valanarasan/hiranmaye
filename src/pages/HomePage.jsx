@@ -15,7 +15,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           1. HERO — Full viewport, dramatic headline
           ============================================ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-28 pb-12">
         {/* 3D Canvas Background */}
         <div className="absolute inset-0 z-0">
           <Hero3DCanvas />

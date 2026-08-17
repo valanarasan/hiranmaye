@@ -12,7 +12,7 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           1. HERO
           ============================================ */}
-      <section className="section-cinematic min-h-[70vh] px-4 sm:px-8 relative">
+      <section className="section-cinematic min-h-[70vh] px-4 sm:px-8 relative pt-32 pb-16">
         <div className="glow-top" />
         <div className="reveal text-center space-y-6 max-w-4xl mx-auto relative z-10">
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95]">

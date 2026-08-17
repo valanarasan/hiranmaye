@@ -33,7 +33,7 @@ export default function StrategyModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
       <div className="relative w-full max-w-xl glass-dark rounded-2xl p-6 sm:p-8 border-zinc-200 shadow-2xl overflow-hidden">
 
         {/* Ambient glows */}

@@ -26,7 +26,10 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-nav-dark py-3' : 'bg-transparent py-5'}`}>
+    <header
+      className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300 py-4 bg-transparent"
+      style={{ transform: 'translate3d(0, 0, 0)', WebkitTransform: 'translate3d(0, 0, 0)' }}
+    >
       <div className="w-full px-4 sm:px-8 lg:px-16 2xl:px-20">
         <div className="flex items-center justify-between">
 

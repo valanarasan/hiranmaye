@@ -31,7 +31,7 @@ export default function BlogPage({ onOpenConsultation }) {
     <div className="relative w-full">
 
       {/* HERO */}
-      <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative">
+      <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative pt-32 pb-16">
         <div className="glow-top" />
         <div className="reveal text-center space-y-6 max-w-3xl mx-auto relative z-10">
           <h1 className="text-5xl sm:text-7xl font-black tracking-tight text-zinc-900">
@@ -167,7 +167,7 @@ export default function BlogPage({ onOpenConsultation }) {
 
       {/* ARTICLE READER MODAL */}
       {activeArticle && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
           <div className="relative w-full max-w-2xl max-h-[85vh] glass-dark rounded-2xl p-6 sm:p-8 border-zinc-200 shadow-2xl overflow-y-auto">
             <button
               onClick={() => setActiveArticle(null)}

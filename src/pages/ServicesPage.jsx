@@ -30,7 +30,7 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           1. HERO
           ============================================ */}
-      <section className="section-cinematic min-h-[60vh] px-4 sm:px-8 relative">
+      <section className="section-cinematic min-h-[60vh] px-4 sm:px-8 relative pt-32 pb-16">
         <div className="glow-top" />
         <div className="reveal text-center space-y-4 relative z-10">
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-zinc-900">
@@ -85,7 +85,7 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
           3. SERVICE DETAIL OVERLAY
           ============================================ */}
       {expandedService && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
           <div className="relative w-full max-w-2xl max-h-[85vh] glass-dark rounded-2xl p-6 sm:p-8 border-zinc-200 shadow-2xl overflow-y-auto">
 
             {/* Close */}
