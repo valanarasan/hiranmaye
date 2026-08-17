@@ -57,7 +57,7 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
                     isActive
                       ? 'bg-zinc-950 text-white shadow-sm'
-                      : 'text-zinc-650 hover:text-zinc-950'
+                      : 'text-zinc-650 hover:text-zinc-950 hover:bg-zinc-200/80'
                   }`}
                 >
                   {link.label}
@@ -106,7 +106,7 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
               className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium cursor-pointer ${
                 activePage === link.id
                   ? 'bg-zinc-950 text-white'
-                  : 'text-zinc-650 hover:text-zinc-950 hover:bg-black/[0.02]'
+                  : 'text-zinc-650 hover:text-zinc-950 hover:bg-zinc-200/80'
               }`}
             >
               {link.label}
