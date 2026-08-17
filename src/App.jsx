@@ -22,6 +22,11 @@ export default function App() {
     }
   }, [activePage]);
 
+  // Scroll to top of the page on route/navigation change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activePage]);
+
   // Global scroll-reveal observer
   useEffect(() => {
     const observer = new IntersectionObserver(

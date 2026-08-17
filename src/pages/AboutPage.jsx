@@ -110,7 +110,7 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
-              onClick={() => { setActivePage('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              onClick={() => setActivePage('contact')}
               className="btn-ghost px-7 py-4 text-sm uppercase tracking-wider font-medium"
             >
               Contact Us

@@ -5,7 +5,6 @@ import { companyDetails } from '../data/siteData';
 export default function Footer({ setActivePage, onOpenConsultation }) {
   const navTo = (pageId) => {
     setActivePage(pageId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

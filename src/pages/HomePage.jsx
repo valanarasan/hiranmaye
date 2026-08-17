@@ -50,7 +50,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
               <ArrowRight className="w-5 h-5" />
             </button>
             <button
-              onClick={() => { setActivePage('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              onClick={() => setActivePage('services')}
               className="btn-ghost px-7 py-4 text-sm uppercase tracking-wider font-medium flex items-center space-x-2"
             >
               <span>Our Work</span>
@@ -133,7 +133,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
             return (
               <Tilt3DCard key={pillar.title} maxTilt={8}>
                 <div
-                  onClick={() => { setActivePage('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  onClick={() => setActivePage('services')}
                   className="glass-dark glass-dark-hover rounded-2xl p-6 sm:p-8 border-zinc-200 cursor-pointer group h-full flex flex-col"
                 >
                   {/* Icon with gradient bg */}

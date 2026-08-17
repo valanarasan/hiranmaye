@@ -22,7 +22,6 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
   const handleNavClick = (id) => {
     setActivePage(id);
     setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
