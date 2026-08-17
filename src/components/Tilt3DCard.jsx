@@ -16,8 +16,8 @@ export default function Tilt3DCard({ children, className = '' }) {
     const glareY = (y / rect.height) * 100;
 
     setGlareStyle({
-      opacity: 0.25,
-      background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 65%)`,
+      opacity: 0.35,
+      background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(234, 88, 12, 0.25) 0%, rgba(234, 88, 12, 0) 65%)`,
       transition: 'opacity 0.2s ease-out'
     });
   };

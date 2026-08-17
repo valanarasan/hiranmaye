@@ -15,18 +15,18 @@ export default function WhatsAppWidget() {
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
       {open && (
-        <div className="w-72 glass-dark rounded-2xl p-4 border-purple-500/20 shadow-2xl animate-fade-in space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-white/[0.06]">
+        <div className="w-72 glass-dark rounded-2xl p-4 border-zinc-200 shadow-2xl animate-fade-in space-y-3">
+          <div className="flex items-center justify-between pb-2 border-b border-zinc-100">
             <div className="flex items-center space-x-2">
               <div className="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[10px] font-bold">
                 WA
               </div>
               <div>
-                <h4 className="text-xs font-bold text-white">Quick Chat</h4>
-                <p className="text-[10px] text-emerald-400 font-medium">● Online</p>
+                <h4 className="text-xs font-bold text-zinc-900">Quick Chat</h4>
+                <p className="text-[10px] text-emerald-600 font-medium">● Online</p>
               </div>
             </div>
-            <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-white p-1 cursor-pointer">
+            <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-zinc-900 p-1 cursor-pointer">
               <X className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -76,8 +76,8 @@ export default function WhatsAppWidget() {
         ) : (
           <div className="relative">
             <MessageSquare className="w-5 h-5" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-purple-500 rounded-full animate-ping" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-purple-500 rounded-full" />
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-orange-500 rounded-full animate-ping" />
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-orange-500 rounded-full" />
           </div>
         )}
       </button>

@@ -69,7 +69,7 @@ export default function Hero3DCanvas() {
         uY: Math.sin(theta) * Math.sin(phi),
         uZ: Math.cos(theta),
         size: Math.random() * 2 + 1.2,
-        color: i % 5 === 0 ? '#A855F7' : i % 4 === 0 ? '#D946EF' : i % 3 === 0 ? '#8B5CF6' : i % 7 === 0 ? '#06B6D4' : '#6D28D9',
+        color: i % 5 === 0 ? '#EA580C' : i % 4 === 0 ? '#F97316' : i % 3 === 0 ? '#18181B' : i % 7 === 0 ? '#F59E0B' : '#000000',
         pulseOffset: Math.random() * Math.PI * 2
       });
     }
@@ -80,7 +80,7 @@ export default function Hero3DCanvas() {
       distanceRatio: 1.3,
       speed: 0.004 * (idx % 2 === 0 ? 1 : -1),
       size: 12 + Math.random() * 6,
-      color: idx % 2 === 0 ? 'rgba(168, 85, 247, 0.5)' : 'rgba(6, 182, 212, 0.4)'
+      color: idx % 2 === 0 ? 'rgba(234, 88, 12, 0.4)' : 'rgba(24, 24, 27, 0.3)'
     }));
 
     let globalAngle = 0;
@@ -114,8 +114,8 @@ export default function Hero3DCanvas() {
 
       // Subtle center glow
       const centerGlow = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, radius * 1.5);
-      centerGlow.addColorStop(0, 'rgba(168, 85, 247, 0.08)');
-      centerGlow.addColorStop(0.5, 'rgba(139, 92, 246, 0.03)');
+      centerGlow.addColorStop(0, 'rgba(234, 88, 12, 0.05)');
+      centerGlow.addColorStop(0.5, 'rgba(249, 115, 22, 0.01)');
       centerGlow.addColorStop(1, 'transparent');
       ctx.fillStyle = centerGlow;
       ctx.fillRect(0, 0, width, height);
@@ -155,10 +155,10 @@ export default function Hero3DCanvas() {
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 60 && connectionCount < 2) {
+          if (dist < 80 && connectionCount < 3) {
             connectionCount++;
-            const alpha = (1 - dist / 60) * 0.2 * Math.min(p1.scale, p2.scale);
-            ctx.strokeStyle = `rgba(168, 85, 247, ${alpha})`;
+            const alpha = (1 - dist / 80) * 0.7 * Math.min(p1.scale, p2.scale);
+            ctx.strokeStyle = `rgba(234, 88, 12, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -238,12 +238,12 @@ export default function Hero3DCanvas() {
       />
       {/* Orbiting rings */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full border border-purple-500/20 animate-orbit">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50" />
+        <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full border border-orange-500/10 animate-orbit">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-orange-500 shadow-lg shadow-orange-500/40" />
         </div>
       </div>
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="w-32 h-32 sm:w-44 sm:h-44 rounded-full border border-dashed border-fuchsia-500/15" style={{ animation: 'orbitRotate 35s linear infinite reverse' }} />
+        <div className="w-32 h-32 sm:w-44 sm:h-44 rounded-full border border-dashed border-orange-500/5" style={{ animation: 'orbitRotate 35s linear infinite reverse' }} />
       </div>
     </div>
   );

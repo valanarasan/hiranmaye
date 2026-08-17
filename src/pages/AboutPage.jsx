@@ -16,7 +16,7 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
         <div className="glow-top" />
         <div className="reveal text-center space-y-6 max-w-4xl mx-auto relative z-10">
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95]">
-            <span className="text-white">Our</span>{' '}
+            <span className="text-zinc-900">Our</span>{' '}
             <span className="gradient-text-hero">Story</span>
           </h1>
           <p className="text-base sm:text-lg text-zinc-500 max-w-lg mx-auto">
@@ -38,11 +38,11 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
       <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-16">
         <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           <Tilt3DCard maxTilt={8}>
-            <div className="glass-dark glass-dark-hover rounded-2xl p-8 sm:p-10 border-white/[0.04] h-full space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center">
+            <div className="glass-dark glass-dark-hover rounded-2xl p-8 sm:p-10 border-zinc-200 h-full space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-orange-500/15 text-orange-600 flex items-center justify-center">
                 <Eye className="w-6 h-6" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Vision</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-zinc-900">Vision</h3>
               <p className="text-sm text-zinc-500 leading-relaxed">
                 India's most trusted digital growth partner.
               </p>
@@ -50,11 +50,11 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
           </Tilt3DCard>
 
           <Tilt3DCard maxTilt={8}>
-            <div className="glass-dark glass-dark-hover rounded-2xl p-8 sm:p-10 border-white/[0.04] h-full space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-fuchsia-500/15 text-fuchsia-400 flex items-center justify-center">
+            <div className="glass-dark glass-dark-hover rounded-2xl p-8 sm:p-10 border-zinc-200 h-full space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-orange-500/15 text-orange-600 flex items-center justify-center">
                 <Rocket className="w-6 h-6" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Mission</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-zinc-900">Mission</h3>
               <p className="text-sm text-zinc-500 leading-relaxed">
                 Unlock business potential through digital excellence.
               </p>
@@ -68,7 +68,7 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
           ============================================ */}
       <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-16">
         <div className="reveal text-center mb-12">
-          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
             Our Values
           </h2>
         </div>
@@ -76,11 +76,11 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
         <div className="stagger-children grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
           {aboutContent.coreValues.map((val, idx) => (
             <Tilt3DCard key={val.title} maxTilt={10}>
-              <div className="glass-dark glass-dark-hover rounded-2xl p-5 sm:p-6 border-white/[0.04] text-center h-full group">
-                <div className="text-2xl mb-3 text-purple-400 group-hover:scale-110 transition-transform">
+              <div className="glass-dark glass-dark-hover rounded-2xl p-5 sm:p-6 border-zinc-200 text-center h-full group">
+                <div className="text-2xl mb-3 text-orange-500 group-hover:scale-110 transition-transform">
                   {valueIcons[idx] || '◆'}
                 </div>
-                <h4 className="text-xs sm:text-sm font-bold text-white">
+                <h4 className="text-xs sm:text-sm font-bold text-zinc-900">
                   {val.title}
                 </h4>
               </div>
@@ -95,7 +95,7 @@ export default function AboutPage({ setActivePage, onOpenConsultation }) {
       <section className="section-cinematic px-4 sm:px-8 relative">
         <div className="glow-accent left-1/2 -translate-x-1/2 top-0" />
         <div className="reveal text-center space-y-6 relative z-10">
-          <h2 className="text-5xl sm:text-7xl font-black text-white tracking-tight">
+          <h2 className="text-5xl sm:text-7xl font-black text-zinc-900 tracking-tight">
             Let's Talk
           </h2>
           <p className="text-sm text-zinc-500">

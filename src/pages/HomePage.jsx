@@ -11,7 +11,7 @@ import ROICalculator3D from '../components/ROICalculator3D';
 export default function HomePage({ setActivePage, onOpenConsultation }) {
   return (
     <div className="relative w-full">
-      
+
       {/* ============================================
           1. HERO — Full viewport, dramatic headline
           ============================================ */}
@@ -26,16 +26,16 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
 
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 sm:px-8 max-w-5xl mx-auto space-y-8">
-          
+
           {/* Tagline pill */}
-          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm animate-float-gentle">
-            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-zinc-200 bg-black/[0.02] backdrop-blur-sm animate-float-gentle">
+            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
             <span className="text-xs font-medium text-zinc-400 uppercase tracking-wider">Digital Growth Agency · Bangalore</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95]">
-            <span className="text-white">We Make Brands</span>
+            <span className="text-zinc-900">We Make Brands</span>
             <br />
             <span className="gradient-text-hero">Unforgettable</span>
           </h1>
@@ -60,8 +60,8 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 animate-float-slow">
-          <div className="w-5 h-8 rounded-full border border-white/[0.15] flex items-start justify-center p-1.5">
-            <div className="w-1 h-2 rounded-full bg-purple-400 animate-pulse" />
+          <div className="w-5 h-8 rounded-full border border-zinc-300 flex items-start justify-center p-1.5">
+            <div className="w-1 h-2 rounded-full bg-orange-500 animate-pulse" />
           </div>
         </div>
       </section>
@@ -91,9 +91,9 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
           ============================================ */}
       <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
         <div className="glow-accent -left-40 top-1/2 -translate-y-1/2" />
-        
+
         <div className="reveal text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-zinc-900 tracking-tight">
             What We Do
           </h2>
         </div>
@@ -103,29 +103,29 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
             {
               title: 'Strategy & Growth',
               icon: Target,
-              gradient: 'from-violet-600 to-purple-500',
-              shadowColor: 'shadow-violet-500/20',
+              gradient: 'from-zinc-950 to-zinc-800',
+              shadowColor: 'shadow-zinc-950/10',
               services: ['Digital Strategy', 'Consulting', 'Market Analysis']
             },
             {
               title: 'Search & AI',
               icon: Search,
-              gradient: 'from-purple-600 to-fuchsia-500',
-              shadowColor: 'shadow-purple-500/20',
+              gradient: 'from-orange-600 to-orange-500',
+              shadowColor: 'shadow-orange-500/10',
               services: ['SEO · AEO · GEO', 'AI Marketing', 'Content Strategy']
             },
             {
               title: 'Creative & Brand',
               icon: Palette,
-              gradient: 'from-fuchsia-600 to-rose-500',
-              shadowColor: 'shadow-fuchsia-500/20',
+              gradient: 'from-zinc-900 to-zinc-800',
+              shadowColor: 'shadow-zinc-900/10',
               services: ['Branding', 'Web Design', 'Outdoor Media']
             },
             {
               title: 'Performance',
               icon: Zap,
-              gradient: 'from-cyan-500 to-blue-500',
-              shadowColor: 'shadow-cyan-500/20',
+              gradient: 'from-orange-700 to-orange-600',
+              shadowColor: 'shadow-orange-600/10',
               services: ['Meta & Google Ads', 'Social Media', 'Performance Marketing']
             }
           ].map((pillar) => {
@@ -134,7 +134,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
               <Tilt3DCard key={pillar.title} maxTilt={8}>
                 <div
                   onClick={() => { setActivePage('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="glass-dark glass-dark-hover rounded-2xl p-6 sm:p-8 border-white/[0.04] cursor-pointer group h-full flex flex-col"
+                  className="glass-dark glass-dark-hover rounded-2xl p-6 sm:p-8 border-zinc-200 cursor-pointer group h-full flex flex-col"
                 >
                   {/* Icon with gradient bg */}
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${pillar.gradient} flex items-center justify-center mb-5 shadow-lg ${pillar.shadowColor} group-hover:scale-110 transition-transform`}>
@@ -142,22 +142,22 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-4 group-hover:text-purple-200 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-4 group-hover:text-orange-600 transition-colors">
                     {pillar.title}
                   </h3>
 
                   {/* Sub-services list */}
                   <ul className="space-y-2 flex-grow">
                     {pillar.services.map(s => (
-                      <li key={s} className="text-xs text-zinc-500 group-hover:text-zinc-400 transition-colors flex items-center space-x-2">
-                        <span className="w-1 h-1 rounded-full bg-purple-500/50 shrink-0" />
+                      <li key={s} className="text-xs text-zinc-500 group-hover:text-zinc-650 transition-colors flex items-center space-x-2">
+                        <span className="w-1 h-1 rounded-full bg-orange-500/50 shrink-0" />
                         <span>{s}</span>
                       </li>
                     ))}
                   </ul>
 
                   {/* Arrow */}
-                  <div className="flex items-center space-x-1 text-[10px] text-zinc-600 mt-5 group-hover:text-purple-400 transition-colors">
+                  <div className="flex items-center space-x-1 text-[10px] text-zinc-600 mt-5 group-hover:text-orange-600 transition-colors">
                     <span>Explore</span>
                     <ArrowRight className="w-3 h-3 group-hover:translate-x-1.5 transition-transform" />
                   </div>
@@ -173,7 +173,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
           ============================================ */}
       <section className="section-cinematic px-4 sm:px-8">
         <div className="reveal text-center mb-8">
-          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
             How We Work
           </h2>
         </div>
@@ -196,7 +196,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
           ============================================ */}
       <section className="py-20 sm:py-28 relative overflow-hidden">
         <div className="reveal text-center mb-12 px-4 sm:px-8">
-          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
             Industries We Serve
           </h2>
         </div>
@@ -207,7 +207,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
             {[...industriesServed, ...industriesServed].map((ind, idx) => (
               <div
                 key={`r1-${idx}`}
-                className="shrink-0 mx-2 px-6 py-3 rounded-full border border-white/[0.06] bg-white/[0.02] text-sm font-medium text-zinc-400 hover:text-white hover:border-purple-500/40 hover:bg-purple-500/10 transition-all duration-300 cursor-default whitespace-nowrap"
+                className="shrink-0 mx-2 px-6 py-3 rounded-full border border-zinc-200 bg-white/70 text-sm font-medium text-zinc-650 hover:text-orange-600 hover:border-orange-500/40 hover:bg-orange-500/10 transition-all duration-300 cursor-default whitespace-nowrap shadow-sm"
               >
                 {ind.name}
               </div>
@@ -221,7 +221,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
             {[...industriesServed.slice().reverse(), ...industriesServed.slice().reverse()].map((ind, idx) => (
               <div
                 key={`r2-${idx}`}
-                className="shrink-0 mx-2 px-6 py-3 rounded-full border border-white/[0.06] bg-white/[0.02] text-sm font-medium text-zinc-400 hover:text-white hover:border-fuchsia-500/40 hover:bg-fuchsia-500/10 transition-all duration-300 cursor-default whitespace-nowrap"
+                className="shrink-0 mx-2 px-6 py-3 rounded-full border border-zinc-200 bg-white/70 text-sm font-medium text-zinc-650 hover:text-orange-600 hover:border-orange-500/40 hover:bg-orange-500/10 transition-all duration-300 cursor-default whitespace-nowrap shadow-sm"
               >
                 {ind.name}
               </div>
@@ -230,8 +230,8 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
         </div>
 
         {/* Edge fades */}
-        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#09090B] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#09090B] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#FFFFFF] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#FFFFFF] to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* ============================================
@@ -239,9 +239,9 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
           ============================================ */}
       <section className="section-cinematic px-4 sm:px-8 relative">
         <div className="glow-accent left-1/2 -translate-x-1/2 top-0" />
-        
+
         <div className="reveal text-center space-y-8 max-w-3xl mx-auto relative z-10">
-          <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight">
+          <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-zinc-900 tracking-tight">
             Ready?
           </h2>
           <p className="text-base sm:text-lg text-zinc-500 max-w-md mx-auto">

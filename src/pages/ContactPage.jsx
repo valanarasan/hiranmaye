@@ -24,7 +24,7 @@ export default function ContactPage({ onOpenConsultation }) {
       <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative">
         <div className="glow-top" />
         <div className="reveal text-center space-y-4 relative z-10">
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white">
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-zinc-900">
             Let's Talk
           </h1>
           <p className="text-base text-zinc-500">
@@ -36,22 +36,22 @@ export default function ContactPage({ onOpenConsultation }) {
       {/* MAIN CONTENT */}
       <section className="py-8 sm:py-16 px-4 sm:px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
-          
+
           {/* LEFT — Contact Info */}
           <div className="lg:col-span-4 space-y-4 reveal">
             <Tilt3DCard maxTilt={5}>
-              <div className="glass-dark rounded-2xl p-6 border-white/[0.04] space-y-5">
+              <div className="glass-dark rounded-2xl p-6 border-zinc-200 space-y-5">
                 {[
-                  { icon: MapPin, label: companyDetails.address, color: 'text-purple-400' },
-                  { icon: Phone, label: companyDetails.phone, color: 'text-fuchsia-400' },
-                  { icon: Mail, label: companyDetails.email, color: 'text-purple-400' },
-                  { icon: Globe, label: companyDetails.website, color: 'text-cyan-400' }
+                  { icon: MapPin, label: companyDetails.address, color: 'text-orange-600' },
+                  { icon: Phone, label: companyDetails.phone, color: 'text-zinc-950' },
+                  { icon: Mail, label: companyDetails.email, color: 'text-orange-600' },
+                  { icon: Globe, label: companyDetails.website, color: 'text-orange-600' }
                 ].map(({ icon: Icon, label, color }) => (
                   <div key={label} className="flex items-center space-x-3">
-                    <div className={`w-9 h-9 rounded-lg bg-white/[0.04] flex items-center justify-center ${color}`}>
+                    <div className={`w-9 h-9 rounded-lg bg-black/[0.02] border border-zinc-100 flex items-center justify-center ${color}`}>
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-sm text-zinc-400">{label}</span>
+                    <span className="text-sm text-zinc-650">{label}</span>
                   </div>
                 ))}
               </div>
@@ -69,7 +69,7 @@ export default function ContactPage({ onOpenConsultation }) {
                 href={`https://wa.me/${companyDetails.whatsapp.replace(/[^0-9]/g, '')}?text=Hi%2C%20I%27d%20like%20to%20discuss%20a%20project`}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center space-x-1.5 py-3 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30 hover:bg-emerald-500/30 transition-all"
+                className="flex items-center justify-center space-x-1.5 py-3 rounded-xl bg-emerald-555/10 text-emerald-600 text-xs font-bold border border-emerald-500/20 hover:bg-emerald-500/20 transition-all"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>WhatsApp</span>
@@ -80,16 +80,16 @@ export default function ContactPage({ onOpenConsultation }) {
           {/* RIGHT — Form */}
           <div className="lg:col-span-8 reveal">
             <Tilt3DCard maxTilt={3}>
-              <div className="glass-dark rounded-2xl p-6 sm:p-8 border-white/[0.04]">
-                
+              <div className="glass-dark rounded-2xl p-6 sm:p-8 border-zinc-200">
+
                 {submitted ? (
                   <div className="text-center py-10 space-y-4 animate-fade-in">
                     <div className="w-14 h-14 bg-emerald-500/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto text-emerald-400">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-white">Message Received</h3>
+                    <h3 className="text-xl font-bold text-zinc-900">Message Received</h3>
                     <p className="text-sm text-zinc-500">
-                      We'll reach out to <span className="text-purple-400">{form.email}</span> shortly.
+                      We'll reach out to <span className="text-orange-650 font-semibold">{form.email}</span> shortly.
                     </p>
                     <button onClick={() => setSubmitted(false)} className="btn-glow px-5 py-2.5 text-xs font-bold">
                       Send Another

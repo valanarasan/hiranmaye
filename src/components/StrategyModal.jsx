@@ -34,16 +34,16 @@ export default function StrategyModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-xl glass-dark rounded-2xl p-6 sm:p-8 border-purple-500/20 shadow-2xl overflow-hidden">
-        
+      <div className="relative w-full max-w-xl glass-dark rounded-2xl p-6 sm:p-8 border-zinc-200 shadow-2xl overflow-hidden">
+
         {/* Ambient glows */}
-        <div className="absolute -top-20 -right-20 w-52 h-52 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-52 h-52 bg-fuchsia-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-52 h-52 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-52 h-52 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
         {/* Close */}
         <button
           onClick={resetAndClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-white/[0.06] text-zinc-400 hover:text-white border border-white/[0.06] transition-all z-10 cursor-pointer"
+          className="absolute top-4 right-4 p-2 rounded-full bg-black/[0.02] text-zinc-500 hover:text-zinc-900 border border-zinc-200 transition-all z-10 cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
@@ -53,9 +53,9 @@ export default function StrategyModal({ isOpen, onClose }) {
             <div className="w-14 h-14 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto text-emerald-400">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-white">Confirmed!</h3>
-            <p className="text-sm text-zinc-400 max-w-sm mx-auto">
-              We'll reach out to <span className="text-purple-400 font-semibold">{formData.email}</span> to confirm your session.
+            <h3 className="text-xl font-bold text-zinc-900">Confirmed!</h3>
+            <p className="text-sm text-zinc-500 max-w-sm mx-auto">
+              We'll reach out to <span className="text-orange-600 font-semibold">{formData.email}</span> to confirm your session.
             </p>
             <button onClick={resetAndClose} className="btn-glow px-6 py-2.5 text-xs uppercase font-bold">
               Done
@@ -64,17 +64,17 @@ export default function StrategyModal({ isOpen, onClose }) {
         ) : (
           <div className="space-y-5">
             <div className="pr-8">
-              <h2 className="text-xl sm:text-2xl font-bold text-white">Book Strategy Session</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-zinc-900">Book Strategy Session</h2>
               <p className="text-xs text-zinc-500 mt-1">Free consultation with our growth team.</p>
             </div>
 
             {/* Steps */}
             <div className="flex items-center space-x-2 text-xs font-medium">
-              <span className={`px-3 py-1 rounded-full ${step === 1 ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : 'text-zinc-600'}`}>
+              <span className={`px-3 py-1 rounded-full ${step === 1 ? 'bg-orange-500/15 text-orange-700 border border-orange-500/30' : 'text-zinc-650'}`}>
                 1. Goal
               </span>
-              <span className="text-zinc-700">→</span>
-              <span className={`px-3 py-1 rounded-full ${step === 2 ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : 'text-zinc-600'}`}>
+              <span className="text-zinc-400">→</span>
+              <span className={`px-3 py-1 rounded-full ${step === 2 ? 'bg-orange-500/15 text-orange-700 border border-orange-500/30' : 'text-zinc-650'}`}>
                 2. Details
               </span>
             </div>
@@ -94,11 +94,10 @@ export default function StrategyModal({ isOpen, onClose }) {
                       type="button"
                       key={g}
                       onClick={() => setFormData({ ...formData, goal: g })}
-                      className={`p-3 text-left rounded-xl text-xs font-medium border transition-all cursor-pointer ${
-                        formData.goal === g
-                          ? 'bg-purple-500/15 border-purple-500/40 text-purple-300'
-                          : 'bg-white/[0.03] border-white/[0.06] text-zinc-400 hover:border-white/[0.12]'
-                      }`}
+                      className={`p-3 text-left rounded-xl text-xs font-medium border transition-all cursor-pointer ${formData.goal === g
+                          ? 'bg-orange-500/15 border-orange-500/40 text-orange-700'
+                          : 'bg-black/[0.02] border-zinc-200 text-zinc-600 hover:border-zinc-350'
+                        }`}
                     >
                       {g}
                     </button>
@@ -112,7 +111,7 @@ export default function StrategyModal({ isOpen, onClose }) {
                   className="w-full input-dark text-sm"
                 >
                   {['Real Estate', 'Manufacturing', 'Healthcare', 'Education', 'Retail & E-commerce', 'Professional Services', 'Technology & SaaS', 'Financial Services', 'Hospitality', 'Startups & SMEs'].map(ind => (
-                    <option key={ind} value={ind} className="bg-zinc-900">{ind}</option>
+                    <option key={ind} value={ind} className="bg-white text-zinc-900">{ind}</option>
                   ))}
                 </select>
 
@@ -149,13 +148,13 @@ export default function StrategyModal({ isOpen, onClose }) {
                   <input type="date" name="date" value={formData.date} onChange={handleChange} className="input-dark text-xs" />
                   <select name="time" value={formData.time} onChange={handleChange} className="input-dark text-xs">
                     {['10:00 AM', '11:30 AM', '02:00 PM', '04:30 PM', '06:00 PM'].map(t => (
-                      <option key={t} value={t} className="bg-zinc-900">{t}</option>
+                      <option key={t} value={t} className="bg-white text-zinc-900">{t}</option>
                     ))}
                   </select>
                 </div>
 
                 <div className="flex items-center space-x-2 pt-1">
-                  <button type="button" onClick={() => setStep(1)} className="px-4 py-2.5 bg-white/[0.04] text-zinc-400 text-xs rounded-xl border border-white/[0.06] cursor-pointer">
+                  <button type="button" onClick={() => setStep(1)} className="px-4 py-2.5 bg-black/[0.02] text-zinc-500 text-xs rounded-xl border border-zinc-200 cursor-pointer hover:border-zinc-350 hover:bg-black/[0.04]">
                     Back
                   </button>
                   <button type="submit" className="flex-1 btn-glow py-2.5 text-xs uppercase font-bold">

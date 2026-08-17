@@ -34,10 +34,10 @@ export default function BlogPage({ onOpenConsultation }) {
       <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative">
         <div className="glow-top" />
         <div className="reveal text-center space-y-6 max-w-3xl mx-auto relative z-10">
-          <h1 className="text-5xl sm:text-7xl font-black tracking-tight text-white">
+          <h1 className="text-5xl sm:text-7xl font-black tracking-tight text-zinc-900">
             Insights
           </h1>
-          
+
           {/* Search */}
           <div className="relative max-w-md mx-auto">
             <Search className="w-4 h-4 absolute left-4 top-3.5 text-zinc-600" />
@@ -52,19 +52,22 @@ export default function BlogPage({ onOpenConsultation }) {
 
           {/* Category filters */}
           <div className="flex flex-wrap items-center justify-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-medium transition-all cursor-pointer ${
-                  selectedCategory === cat
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                    : 'text-zinc-500 hover:text-white border border-transparent'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                    isActive
+                      ? 'bg-orange-500/15 text-orange-700 border-orange-500/30'
+                      : 'bg-black/[0.02] border-zinc-200 text-zinc-550 hover:text-zinc-950'
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -76,11 +79,11 @@ export default function BlogPage({ onOpenConsultation }) {
             <Tilt3DCard key={art.id} maxTilt={8}>
               <div
                 onClick={() => setActiveArticle(art)}
-                className="glass-dark glass-dark-hover rounded-2xl p-5 sm:p-6 border-white/[0.04] cursor-pointer group h-full flex flex-col justify-between"
+                className="glass-dark glass-dark-hover rounded-2xl p-5 sm:p-6 border-zinc-200 cursor-pointer group h-full flex flex-col justify-between"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-400 text-[10px] font-bold border border-purple-500/20">
+                    <span className="px-2.5 py-1 rounded-full bg-orange-500/15 text-orange-700 text-[10px] font-bold border border-orange-500/20">
                       {art.category}
                     </span>
                     <span className="flex items-center space-x-1 text-[10px] text-zinc-600">
@@ -88,12 +91,12 @@ export default function BlogPage({ onOpenConsultation }) {
                       <span>{art.readTime}</span>
                     </span>
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-purple-300 transition-colors leading-snug">
+                  <h3 className="text-sm sm:text-base font-bold text-zinc-900 group-hover:text-orange-600 transition-colors leading-snug">
                     {art.title}
                   </h3>
                 </div>
-                <div className="flex items-center space-x-1 text-[10px] text-zinc-600 mt-4 group-hover:text-purple-400/60 transition-colors">
-                  <span>Read</span>
+                <div className="flex items-center space-x-1 text-[10px] text-zinc-600 mt-4 group-hover:text-orange-600/70 transition-colors">
+                  <span>Read Article</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
@@ -104,10 +107,10 @@ export default function BlogPage({ onOpenConsultation }) {
 
       {/* NEWSLETTER */}
       <section className="py-16 px-4 sm:px-8 lg:px-16">
-        <div className="reveal glass-dark rounded-2xl p-8 sm:p-12 border-purple-500/15 max-w-4xl mx-auto">
+        <div className="reveal glass-dark rounded-2xl p-8 sm:p-12 border-zinc-200 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-bold text-white">Stay Ahead</h3>
+              <h3 className="text-2xl font-bold text-zinc-900">Stay Ahead</h3>
               <p className="text-sm text-zinc-500 mt-2">Expert insights delivered to your inbox.</p>
             </div>
             <div>
@@ -139,20 +142,20 @@ export default function BlogPage({ onOpenConsultation }) {
       {/* FAQ */}
       <section className="py-16 px-4 sm:px-8 lg:px-16">
         <div className="reveal max-w-3xl mx-auto space-y-3">
-          <h3 className="text-xl font-bold text-white mb-6">FAQ</h3>
+          <h3 className="text-xl font-bold text-zinc-900 mb-6">FAQ</h3>
           {blogContent.faqs.map((faq, idx) => {
             const isOpen = openFaq === idx;
             return (
-              <div key={faq.q} className="glass-dark rounded-xl border-white/[0.04] overflow-hidden">
+              <div key={faq.q} className="glass-dark rounded-xl border-zinc-200 overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(isOpen ? null : idx)}
-                  className="w-full p-4 text-left flex items-center justify-between text-sm font-medium text-zinc-300 hover:text-white cursor-pointer"
+                  className="w-full p-4 text-left flex items-center justify-between text-sm font-medium text-zinc-700 hover:text-zinc-900 cursor-pointer"
                 >
                   <span>{faq.q}</span>
-                  {isOpen ? <ChevronUp className="w-4 h-4 text-purple-400" /> : <ChevronDown className="w-4 h-4 text-zinc-600" />}
+                  {isOpen ? <ChevronUp className="w-4 h-4 text-orange-600" /> : <ChevronDown className="w-4 h-4 text-zinc-650" />}
                 </button>
                 {isOpen && (
-                  <div className="px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-white/[0.04]">
+                  <div className="px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-250">
                     {faq.a}
                   </div>
                 )}
@@ -165,19 +168,19 @@ export default function BlogPage({ onOpenConsultation }) {
       {/* ARTICLE READER MODAL */}
       {activeArticle && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-2xl max-h-[85vh] glass-dark rounded-2xl p-6 sm:p-8 border-purple-500/20 shadow-2xl overflow-y-auto">
+          <div className="relative w-full max-w-2xl max-h-[85vh] glass-dark rounded-2xl p-6 sm:p-8 border-zinc-200 shadow-2xl overflow-y-auto">
             <button
               onClick={() => setActiveArticle(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-white/[0.06] text-zinc-400 hover:text-white cursor-pointer"
+              className="absolute top-4 right-4 p-2 rounded-full bg-black/[0.02] text-zinc-500 hover:text-zinc-900 border border-zinc-200 cursor-pointer z-10"
             >
               <X className="w-4 h-4" />
             </button>
 
-            <div className="space-y-4">
-              <span className="px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-400 text-[10px] font-bold border border-purple-500/20">
+            <div className="space-y-6">
+              <span className="px-2.5 py-1 rounded-full bg-orange-500/15 text-orange-700 text-[10px] font-bold border border-orange-500/20">
                 {activeArticle.category}
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-white pr-8">{activeArticle.title}</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 pr-8">{activeArticle.title}</h2>
               <div className="flex items-center space-x-3 text-[10px] text-zinc-600">
                 <span>{activeArticle.author}</span>
                 <span>·</span>
@@ -188,12 +191,12 @@ export default function BlogPage({ onOpenConsultation }) {
             </div>
 
             <div
-              className="prose prose-invert prose-sm max-w-none text-zinc-400 mt-6 border-t border-white/[0.06] pt-6"
+              className="prose prose-sm max-w-none text-zinc-700 mt-6 border-t border-zinc-200 pt-6"
               dangerouslySetInnerHTML={{ __html: activeArticle.content }}
             />
 
-            <div className="mt-6 pt-4 border-t border-white/[0.06] flex justify-between items-center">
-              <button onClick={() => setActiveArticle(null)} className="text-xs text-zinc-500 hover:text-white cursor-pointer">
+            <div className="mt-6 pt-4 border-t border-zinc-200 flex justify-between items-center">
+              <button onClick={() => setActiveArticle(null)} className="text-xs text-zinc-500 hover:text-zinc-900 cursor-pointer">
                 Close
               </button>
               <button
