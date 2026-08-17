@@ -72,20 +72,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-dark-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-dark-hover:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: var(--border-accent);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px -15px rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 20px -2px rgba(168, 85, 247, 0.12);
 }
 
 .glass-nav-dark {
   background: rgba(9, 9, 11, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border-subtle);
 }
 
 /* ========================================

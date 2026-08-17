@@ -33,7 +33,7 @@ export default function Industry3DGrid({ industries }) {
               onMouseLeave={() => setHoveredIndustry(null)}
               className={`p-4 sm:p-5 rounded-2xl h-full transition-all duration-400 cursor-pointer border text-center ${
                 isHovered
-                  ? 'bg-purple-500/10 border-purple-500/30 -translate-y-1'
+                  ? 'bg-purple-500/10 border-purple-500/30'
                   : 'bg-white/[0.02] border-white/[0.06] hover:border-white/[0.1]'
               }`}
             >
