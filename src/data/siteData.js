@@ -4,15 +4,21 @@ export const companyDetails = {
   name: "HIRANMAYE DIGITAL",
   tagline: "Transforming Businesses into Market Leaders Through Strategic Digital Growth",
   heroSubHeading: "At HIRANMAYE DIGITAL, we combine strategy, creativity, AI-powered marketing, and performance-driven campaigns to help ambitious businesses generate qualified leads, strengthen their brand, and achieve sustainable growth.",
-  address: "Bangalore, Karnataka, India",
-  phone: "+91 98765 43210",
-  email: "hello@hiranmayedigital.com",
+  address: "HIRANMAYE DIGITAL — Bangalore, Karnataka, India",
+  phone: "+91 99006 68383",
+  email: "hiranmayemarketing@gmail.com",
   website: "www.hiranmayedigital.com",
-  whatsapp: "+919876543210",
+  whatsapp: "+919900668383",
   hours: {
     weekdays: "Monday – Friday: 9:30 AM – 6:30 PM",
-    saturday: "Saturday: 10:00 AM – 2:00 PM",
+    saturday: "Saturday: 10:00 AM – 5:00 PM",
     sunday: "Sunday: Closed"
+  },
+  socials: {
+    instagram: "https://www.instagram.com/Hiranmaye_Digital",
+    facebook: "https://www.facebook.com/hiranmayedigital",
+    youtube: "https://www.youtube.com/@Hiranmaye_Digital",
+    maps: "https://maps.app.goo.gl/W3sgGPeEHgHCygt96"
   },
   trustStrip: [
     "Startups",

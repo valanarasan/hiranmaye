@@ -55,9 +55,9 @@ export default function App() {
       case 'services':
         return <ServicesPage setActivePage={setActivePage} onOpenConsultation={() => setIsConsultationOpen(true)} />;
       case 'blog':
-        return <BlogPage onOpenConsultation={() => setIsConsultationOpen(true)} />;
+        return <BlogPage setActivePage={setActivePage} onOpenConsultation={() => setIsConsultationOpen(true)} />;
       case 'contact':
-        return <ContactPage onOpenConsultation={() => setIsConsultationOpen(true)} />;
+        return <ContactPage setActivePage={setActivePage} onOpenConsultation={() => setIsConsultationOpen(true)} />;
       default:
         return <HomePage setActivePage={setActivePage} onOpenConsultation={() => setIsConsultationOpen(true)} />;
     }

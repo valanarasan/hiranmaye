@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowRight, X, CheckCircle2, Target, Search, Share2, Layout, Palette, FileText, Zap, Bot, Briefcase, Layers } from 'lucide-react';
+import { ArrowRight, X, CheckCircle2, Target, Search, Share2, Layout, Palette, FileText, Zap, Bot, Briefcase, Layers, Sparkles } from 'lucide-react';
 import { servicesData } from '../data/siteData';
 import Tilt3DCard from '../components/Tilt3DCard';
-
-const iconComponents = {
-  Compass: Target, Share2, Layout, Palette, FileText, Zap, Bot, Search, Target, Briefcase, Layers
-};
 
 const iconMap = {
   'digital-strategy': Target,
@@ -28,16 +24,26 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
     <div className="relative w-full">
 
       {/* ============================================
-          1. HERO
+          1. HERO SECTION
           ============================================ */}
-      <section className="section-cinematic min-h-[60vh] px-4 sm:px-8 relative pt-32 pb-16">
+      <section className="section-cinematic min-h-[55vh] px-4 sm:px-8 relative pt-32 pb-16">
         <div className="glow-top" />
-        <div className="reveal text-center space-y-4 relative z-10">
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-zinc-900">
-            What We Do
+        <div className="reveal text-center space-y-6 max-w-4xl mx-auto relative z-10">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
+            <span>Our Services</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-zinc-950 leading-[1.05] font-heading">
+            Strategic Digital Solutions That Drive{' '}
+            <span className="gradient-text-hero">Measurable Business Growth</span>
           </h1>
-          <p className="text-base text-zinc-500 max-w-md mx-auto">
-            11 services. One goal — your growth.
+
+          <p className="text-base sm:text-lg text-zinc-600 max-w-3xl mx-auto leading-relaxed">
+            At <strong className="text-zinc-900">HIRANMAYE DIGITAL</strong>, we don't believe in one-size-fits-all marketing. Every business is unique, and so are its challenges. Our services are designed to help organizations strengthen their digital presence, generate qualified leads, build lasting customer relationships, and achieve sustainable growth through strategy, creativity, technology, and data-driven execution.
+          </p>
+
+          <p className="text-sm text-zinc-500 max-w-2xl mx-auto">
+            Whether you're a startup building your brand or an established business looking to scale, we provide integrated digital solutions that deliver measurable business outcomes.
           </p>
         </div>
       </section>
@@ -45,34 +51,45 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           2. SERVICES GRID
           ============================================ */}
-      <section className="py-8 sm:py-12 px-4 sm:px-8 lg:px-16">
-        <div className="stagger-children grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+      <section className="py-12 sm:py-20 px-4 sm:px-8 lg:px-16 border-t border-zinc-100 bg-zinc-50/50">
+        <div className="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {servicesData.map((srv, idx) => {
             const IconComp = iconMap[srv.id] || Target;
 
             return (
-              <Tilt3DCard key={srv.id} maxTilt={8}>
+              <Tilt3DCard key={srv.id} maxTilt={6}>
                 <div
                   onClick={() => setExpandedService(srv)}
-                  className="glass-dark glass-dark-hover rounded-2xl p-5 sm:p-6 border-zinc-200 cursor-pointer group h-full flex flex-col justify-between min-h-[180px]"
+                  className="glass-dark glass-dark-hover rounded-2xl p-7 border-zinc-200/80 cursor-pointer group h-full flex flex-col justify-between shadow-sm"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-black/[0.02] border border-zinc-100 text-zinc-500 flex items-center justify-center group-hover:bg-orange-500/10 group-hover:text-orange-600 group-hover:border-orange-500/20 transition-all">
-                        <IconComp className="w-5 h-5" />
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                        <IconComp className="w-6 h-6" />
                       </div>
-                      <span className="text-[10px] text-zinc-700 font-mono">
+                      <span className="text-xs text-zinc-400 font-mono font-bold">
                         {String(idx + 1).padStart(2, '0')}
                       </span>
                     </div>
-                    <h3 className="text-sm sm:text-base font-bold text-zinc-900 group-hover:text-orange-600 transition-colors leading-tight">
+
+                    <h3 className="text-xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors leading-tight mb-2">
                       {srv.title}
                     </h3>
+
+                    <h4 className="text-xs font-semibold text-orange-600 uppercase tracking-wider mb-3">
+                      {srv.subHeading}
+                    </h4>
+
+                    <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
+                      {srv.fullDesc}
+                    </p>
                   </div>
 
-                  <div className="flex items-center space-x-1 text-[10px] text-zinc-600 mt-3 group-hover:text-orange-600/70 transition-colors">
-                    <span>Details</span>
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
+                    <span className="text-xs font-bold text-orange-600 group-hover:text-orange-700 transition-colors flex items-center space-x-1.5">
+                      <span>{srv.ctaText}</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </span>
                   </div>
                 </div>
               </Tilt3DCard>
@@ -82,7 +99,7 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
       </section>
 
       {/* ============================================
-          3. SERVICE DETAIL OVERLAY
+          3. SERVICE DETAIL MODAL / POPUP
           ============================================ */}
       {expandedService && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
@@ -91,88 +108,115 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
             {/* Close */}
             <button
               onClick={() => setExpandedService(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-white/[0.06] text-zinc-400 hover:text-zinc-900 border border-zinc-200 cursor-pointer z-10"
+              className="absolute top-4 right-4 p-2 rounded-full bg-black/[0.03] text-zinc-500 hover:text-zinc-900 border border-zinc-200 cursor-pointer z-10 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
 
             <div className="space-y-6">
               {/* Header */}
-              <div className="space-y-2 pr-10">
-                <div className="w-12 h-12 rounded-xl bg-orange-500/15 text-orange-600 flex items-center justify-center mb-3">
-                  {(() => { const IC = iconMap[expandedService.id] || Target; return <IC className="w-6 h-6" />; })()}
+              <div className="space-y-2 pr-8">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-700 text-xs font-bold border border-orange-500/20">
+                  <span>Service Overview</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900">{expandedService.title}</h2>
-                <p className="text-sm text-zinc-400">{expandedService.subHeading}</p>
+                <h2 className="text-2xl sm:text-3xl font-black text-zinc-900">
+                  {expandedService.title}
+                </h2>
+                <p className="text-sm font-semibold text-orange-600">
+                  {expandedService.subHeading}
+                </p>
               </div>
 
-              {/* Description */}
-              <p className="text-sm text-zinc-500 leading-relaxed">
+              {/* Full Description */}
+              <p className="text-sm text-zinc-700 leading-relaxed">
                 {expandedService.fullDesc}
               </p>
 
-              {/* Pillars (SEO/AEO/GEO) */}
+              {/* SEO | AEO | GEO Pillars */}
               {expandedService.pillars && (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {expandedService.pillars.map((pil) => (
-                    <div key={pil.name} className="p-4 rounded-xl bg-black/[0.02] border border-zinc-150 space-y-1">
-                      <h4 className="text-xs font-bold text-orange-600">{pil.name}</h4>
-                      <p className="text-[10px] text-zinc-500 leading-relaxed">{pil.desc}</p>
-                    </div>
-                  ))}
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900">Search Framework</h4>
+                  <div className="grid grid-cols-1 gap-3">
+                    {expandedService.pillars.map((pillar) => (
+                      <div key={pillar.name} className="p-3.5 rounded-xl bg-orange-500/5 border border-orange-500/15">
+                        <h5 className="text-xs font-bold text-orange-800 mb-1">{pillar.name}</h5>
+                        <p className="text-xs text-zinc-600 leading-relaxed">{pillar.desc}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
-              {/* Offers */}
-              <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">What We Offer</h4>
-                <div className="grid grid-cols-2 gap-2">
-                  {expandedService.offers.map((offer) => (
-                    <div key={offer} className="flex items-center space-x-2 text-xs text-zinc-550">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-orange-650 shrink-0" />
-                      <span>{offer}</span>
-                    </div>
-                  ))}
+              {/* Key Deliverables */}
+              {expandedService.offers && (
+                <div className="space-y-2 pt-2">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900">What We Deliver</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {expandedService.offers.map((offer) => (
+                      <div key={offer} className="flex items-center space-x-2 text-xs text-zinc-700">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-orange-600 shrink-0" />
+                        <span>{offer}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {(expandedService.platforms || expandedService.features || expandedService.idealFor || []).flat().slice(0, 6).map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-[10px] text-zinc-500 font-medium">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              {/* Why It Matters */}
+              {expandedService.whyItMatters && (
+                <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-200">
+                  <h5 className="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-1">Why It Matters</h5>
+                  <p className="text-xs text-zinc-600 leading-relaxed">{expandedService.whyItMatters}</p>
+                </div>
+              )}
 
-              {/* CTA */}
-              <button
-                onClick={() => { setExpandedService(null); onOpenConsultation(); }}
-                className="w-full btn-glow py-3 text-xs uppercase tracking-wider font-bold flex items-center justify-center space-x-2"
-              >
-                <span>{expandedService.ctaText}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              {/* Action Buttons */}
+              <div className="pt-4 border-t border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <button
+                  onClick={() => setExpandedService(null)}
+                  className="text-xs font-semibold text-zinc-500 hover:text-zinc-900 cursor-pointer"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    setExpandedService(null);
+                    onOpenConsultation();
+                  }}
+                  className="btn-glow w-full sm:w-auto px-6 py-3 text-xs uppercase tracking-wider font-bold flex items-center justify-center space-x-2"
+                >
+                  <span>{expandedService.ctaText}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
+
           </div>
         </div>
       )}
 
       {/* ============================================
-          4. BOTTOM CTA
+          4. CTA BOTTOM
           ============================================ */}
-      <section className="section-cinematic px-4 sm:px-8">
-        <div className="reveal text-center space-y-6">
+      <section className="section-cinematic px-4 sm:px-8 relative pb-20">
+        <div className="glow-accent left-1/2 -translate-x-1/2 top-0" />
+
+        <div className="reveal text-center space-y-6 max-w-3xl mx-auto relative z-10">
           <h2 className="text-4xl sm:text-6xl font-black text-zinc-900 tracking-tight">
-            Strategy. AI. Results.
+            Ready to Accelerate Your Growth?
           </h2>
-          <button
-            onClick={onOpenConsultation}
-            className="btn-glow px-8 py-4 text-sm uppercase tracking-wider font-bold inline-flex items-center space-x-2"
-          >
-            <span>Start Your Project</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <p className="text-base text-zinc-600 max-w-xl mx-auto leading-relaxed">
+            Let's design a customized digital marketing roadmap that delivers measurable ROI for your business.
+          </p>
+          <div className="pt-2">
+            <button
+              onClick={onOpenConsultation}
+              className="btn-glow px-8 py-4 text-xs uppercase tracking-wider font-bold inline-flex items-center space-x-3 shadow-xl shadow-orange-500/20"
+            >
+              <span>Book a Free Strategy Consultation</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </section>
 
