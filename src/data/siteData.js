@@ -635,7 +635,7 @@ export const blogContent = {
 
 export const seoPageMeta = {
   home: {
-    title: "HIRANMAYE DIGITAL | Digital Marketing Agency in Bangalore | SEO, AI Marketing & Performance Marketing",
+    title: "Hiranmaye Digital | Digital Marketing Agency in Bangalore",
     description: "HIRANMAYE DIGITAL helps businesses grow through SEO, AI-powered digital marketing, website development, branding, Meta Ads, Google Ads, and performance marketing. Partner with us to drive measurable business growth.",
     keywords: [
       "Digital Marketing Agency Bangalore",
@@ -650,7 +650,7 @@ export const seoPageMeta = {
     h1: "Transforming Businesses into Market Leaders Through Strategic Digital Growth"
   },
   about: {
-    title: "About HIRANMAYE DIGITAL | Premium Digital Marketing Agency in Bangalore",
+    title: "About Us | Hiranmaye Digital — Strategy Drives Growth",
     description: "Learn about HIRANMAYE DIGITAL, a Bangalore-based digital marketing agency helping businesses grow through SEO, AI-powered marketing, branding, website development, performance marketing, and strategic consulting.",
     keywords: [
       "About HIRANMAYE DIGITAL",
@@ -663,7 +663,7 @@ export const seoPageMeta = {
     url: "/about"
   },
   services: {
-    title: "Digital Marketing Services in Bangalore | SEO, AI Marketing, Branding & Performance Marketing | HIRANMAYE DIGITAL",
+    title: "Our Services | Hiranmaye Digital — SEO, AI Marketing & Growth",
     description: "Explore HIRANMAYE DIGITAL's premium digital marketing services, including SEO, AEO, GEO, AI-powered marketing, branding, website development, Meta & Google Ads, content marketing, and business consulting. Grow your business with strategies that deliver measurable results.",
     keywords: [
       "Digital Marketing Services Bangalore",
@@ -681,7 +681,7 @@ export const seoPageMeta = {
     url: "/services"
   },
   blog: {
-    title: "Digital Marketing Blog | SEO, AI Marketing, Branding & Business Growth Insights | HIRANMAYE DIGITAL",
+    title: "Blog & Insights | Hiranmaye Digital",
     description: "Stay informed with HIRANMAYE DIGITAL's expert blog covering digital marketing, SEO, AEO, GEO, AI-powered marketing, website design, branding, Meta Ads, Google Ads, and business growth strategies for modern businesses.",
     keywords: [
       "Digital Marketing Blog",
@@ -698,7 +698,7 @@ export const seoPageMeta = {
     url: "/blog"
   },
   contact: {
-    title: "Contact HIRANMAYE DIGITAL | Digital Marketing Agency in Bangalore",
+    title: "Contact Us | Hiranmaye Digital — Book Consultation",
     description: "Get in touch with HIRANMAYE DIGITAL for expert digital marketing, SEO, AI-powered marketing, website development, branding, Meta Ads, Google Ads, and business consulting. Schedule your free strategy consultation today.",
     keywords: [
       "Contact Digital Marketing Agency Bangalore",

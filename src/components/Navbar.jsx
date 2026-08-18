@@ -42,7 +42,7 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
             onClick={() => handleNavClick('home')}
             className="cursor-pointer shrink-0"
           >
-            <Logo variant="horizontal" showTagline={true} />
+            <Logo variant="horizontal" showTagline={false} />
           </div>
 
           {/* Desktop Nav */}

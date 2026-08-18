@@ -14,12 +14,9 @@ export default function App() {
   const [activePage, setActivePage] = useState('home');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
-  // Dynamic SEO Title updater
+  // Tab header & document title
   useEffect(() => {
-    const meta = seoPageMeta[activePage] || seoPageMeta.home;
-    if (meta && meta.title) {
-      document.title = meta.title;
-    }
+    document.title = 'Hiranmaye Digital';
   }, [activePage]);
 
   // Scroll to top of the page on route/navigation change
