@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Navbar({ activePage, setActivePage, onOpenConsultation }) {
   const [scrolled, setScrolled] = useState(false);
@@ -35,14 +36,9 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
           {/* Logo */}
           <div
             onClick={() => handleNavClick('home')}
-            className="flex items-center space-x-3 cursor-pointer group"
+            className="cursor-pointer"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">
-              <span className="font-black text-white text-lg">H</span>
-            </div>
-            <span className="text-lg font-extrabold tracking-tight text-zinc-900 group-hover:text-orange-600 transition-colors">
-              HIRANMAYE
-            </span>
+            <Logo variant="horizontal" showTagline={true} />
           </div>
 
           {/* Desktop Nav */}

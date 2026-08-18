@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-serif-brand: 'Playfair Display', Georgia, serif;
+  --font-script-brand: 'Alex Brush', cursive;
 
   /* White Theme Core */
   --bg-primary: #FFFFFF;
@@ -54,6 +56,14 @@ h5,
 h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
+}
+
+.font-brand-serif {
+  font-family: var(--font-serif-brand);
+}
+
+.font-brand-script {
+  font-family: var(--font-script-brand);
 }
 
 ::selection {

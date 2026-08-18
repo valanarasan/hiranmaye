@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Mail, MapPin } from 'lucide-react';
 import { companyDetails } from '../data/siteData';
+import Logo from './Logo';
 
 export default function Footer({ setActivePage, onOpenConsultation }) {
   const navTo = (pageId) => {
@@ -18,11 +19,8 @@ export default function Footer({ setActivePage, onOpenConsultation }) {
 
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-orange-600 to-orange-500 flex items-center justify-center">
-                <span className="font-black text-white text-sm">H</span>
-              </div>
-              <span className="text-lg font-extrabold text-zinc-900 tracking-tight">HIRANMAYE</span>
+            <div onClick={() => navTo('home')} className="cursor-pointer">
+              <Logo variant="horizontal" showTagline={true} />
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">
               Digital growth agency. Strategy, AI, and performance marketing.
