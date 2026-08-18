@@ -15,14 +15,17 @@ export default function Hero3DCanvas() {
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let width = 0;
     let height = 0;
+    let containerLeft = 0;
+    let containerTop = 0;
 
     const updateCanvasSize = () => {
       if (!canvas || !container) return;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      // Use container's bounding rect for reliable dimensions on any host
       const rect = container.getBoundingClientRect();
       width = Math.max(rect.width, 1);
       height = Math.max(rect.height, 1);
+      containerLeft = rect.left + window.scrollX;
+      containerTop = rect.top + window.scrollY;
       canvas.style.width = width + 'px';
       canvas.style.height = height + 'px';
       canvas.width = Math.floor(width * dpr);
@@ -31,13 +34,13 @@ export default function Hero3DCanvas() {
 
     updateCanvasSize();
 
-    // Use ResizeObserver for robust resize handling (works in iframes/subpaths)
     let resizeObserver;
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(() => updateCanvasSize());
       resizeObserver.observe(container);
     }
-    window.addEventListener('resize', updateCanvasSize);
+    window.addEventListener('resize', updateCanvasSize, { passive: true });
+    window.addEventListener('scroll', updateCanvasSize, { passive: true });
 
     // Mouse tracking
     let targetRotationX = 0;
@@ -46,31 +49,46 @@ export default function Hero3DCanvas() {
     let rotationY = 0;
 
     const handleMouseMove = (e) => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left - width / 2;
-      const y = e.clientY - rect.top - height / 2;
+      const curLeft = containerLeft - window.scrollX;
+      const curTop = containerTop - window.scrollY;
+      const x = e.clientX - curLeft - width / 2;
+      const y = e.clientY - curTop - height / 2;
       const minDim = Math.min(width, height) || 400;
-      targetRotationY = (x / minDim) * 0.6;
-      targetRotationX = -(y / minDim) * 0.6;
+      targetRotationY = Math.max(-0.6, Math.min(0.6, (x / minDim) * 0.6));
+      targetRotationX = Math.max(-0.6, Math.min(0.6, -(y / minDim) * 0.6));
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const handleMouseLeave = () => {
+      targetRotationX = 0;
+      targetRotationY = 0;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave);
 
     // Particle cloud
-    const particleCount = 160;
-    const particleData = [];
+    const particleCount = 140;
+    const particles = [];
 
     for (let i = 0; i < particleCount; i++) {
       const theta = Math.acos(2 * Math.random() - 1);
       const phi = 2 * Math.PI * Math.random();
+      const isOrange = i % 3 === 0;
+      const isCharcoal = i % 3 === 1;
 
-      particleData.push({
+      particles.push({
         uX: Math.sin(theta) * Math.cos(phi),
         uY: Math.sin(theta) * Math.sin(phi),
         uZ: Math.cos(theta),
         size: Math.random() * 2 + 1.2,
-        color: i % 5 === 0 ? '#EA580C' : i % 4 === 0 ? '#F97316' : i % 3 === 0 ? '#18181B' : i % 7 === 0 ? '#F59E0B' : '#000000',
-        pulseOffset: Math.random() * Math.PI * 2
+        color: isOrange ? '#EA580C' : isCharcoal ? '#18181B' : '#F97316',
+        glowColor: isOrange ? 'rgba(234, 88, 12, 0.3)' : isCharcoal ? 'rgba(24, 24, 27, 0.15)' : 'rgba(249, 115, 22, 0.25)',
+        pulseOffset: Math.random() * Math.PI * 2,
+        x: 0,
+        y: 0,
+        z: 0,
+        scale: 1,
+        currentSize: 1
       });
     }
 
@@ -79,13 +97,18 @@ export default function Hero3DCanvas() {
       angle: (idx * Math.PI * 2) / 5,
       distanceRatio: 1.3,
       speed: 0.004 * (idx % 2 === 0 ? 1 : -1),
-      size: 12 + Math.random() * 6,
-      color: idx % 2 === 0 ? 'rgba(234, 88, 12, 0.4)' : 'rgba(24, 24, 27, 0.3)'
+      size: 12 + (idx % 3) * 3,
+      color: idx % 2 === 0 ? 'rgba(234, 88, 12, 0.5)' : 'rgba(24, 24, 27, 0.4)',
+      borderColor: idx % 2 === 0 ? 'rgba(234, 88, 12, 0.8)' : 'rgba(24, 24, 27, 0.6)'
     }));
 
     let globalAngle = 0;
+    let lastTime = performance.now();
 
-    const render = () => {
+    const render = (now) => {
+      const delta = Math.min(((now || performance.now()) - lastTime) / 1000, 0.1);
+      lastTime = now || performance.now();
+
       if (width <= 0 || height <= 0) {
         updateCanvasSize();
         animationFrameId = requestAnimationFrame(render);
@@ -99,8 +122,10 @@ export default function Hero3DCanvas() {
       const minDim = Math.min(width, height);
       const radius = minDim * 0.35;
 
-      rotationX += (targetRotationX - rotationX) * 0.04;
-      rotationY += (targetRotationY - rotationY) * 0.04;
+      // Snappy, frame-rate independent rotation lerp
+      const lerpFactor = 1 - Math.exp(-delta * 7);
+      rotationX += (targetRotationX - rotationX) * lerpFactor;
+      rotationY += (targetRotationY - rotationY) * lerpFactor;
 
       globalAngle += 0.003;
 
@@ -121,69 +146,76 @@ export default function Hero3DCanvas() {
       ctx.fillRect(0, 0, width, height);
 
       const fov = 900;
-      const projected = [];
 
-      for (let i = 0; i < particleData.length; i++) {
-        const p = particleData[i];
+      // Project particles in-place (no garbage collection overhead)
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         const px = p.uX * radius;
         const py = p.uY * radius;
         const pz = p.uZ * radius;
 
-        let x1 = px * cosY - pz * sinY;
-        let z1 = pz * cosY + px * sinY;
-        let y2 = py * cosX - z1 * sinX;
-        let z2 = z1 * cosX + py * sinX;
+        const x1 = px * cosY - pz * sinY;
+        const z1 = pz * cosY + px * sinY;
+        const y2 = py * cosX - z1 * sinX;
+        const z2 = z1 * cosX + py * sinX;
 
         const scale = fov / (fov + z2);
-        const projX = centerX + x1 * scale;
-        const projY = centerY + y2 * scale;
-        const currentSize = p.size * scale * (1 + 0.2 * Math.sin(globalAngle * 3 + p.pulseOffset));
-
-        projected.push({ x: projX, y: projY, z: z2, scale, color: p.color, size: currentSize });
+        p.x = centerX + x1 * scale;
+        p.y = centerY + y2 * scale;
+        p.z = z2;
+        p.scale = scale;
+        p.currentSize = p.size * scale * (1 + 0.2 * Math.sin(globalAngle * 3 + p.pulseOffset));
       }
 
-      projected.sort((a, b) => b.z - a.z);
+      // Sort particles by depth for correct layering
+      particles.sort((a, b) => b.z - a.z);
 
-      // Connection lines
+      // Batched Connection Lines (Single stroke call for massive GPU performance)
       ctx.lineWidth = 0.5;
-      for (let i = 0; i < projected.length; i++) {
-        const p1 = projected[i];
+      ctx.strokeStyle = 'rgba(234, 88, 12, 0.25)';
+      ctx.beginPath();
+      const maxDistSq = 80 * 80;
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
         if (p1.z > 200) continue;
-        let connectionCount = 0;
-        for (let j = i + 1; j < projected.length; j++) {
-          const p2 = projected[j];
+        let connections = 0;
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 80 && connectionCount < 3) {
-            connectionCount++;
-            const alpha = (1 - dist / 80) * 0.7 * Math.min(p1.scale, p2.scale);
-            ctx.strokeStyle = `rgba(234, 88, 12, ${alpha})`;
-            ctx.beginPath();
+          const distSq = dx * dx + dy * dy;
+          if (distSq < maxDistSq) {
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
+            connections++;
+            if (connections >= 3) break;
           }
         }
       }
+      ctx.stroke();
 
-      // Particles
-      for (let i = 0; i < projected.length; i++) {
-        const p = projected[i];
+      // High-performance particle rendering with vibrant glow effect without expensive shadowBlur
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         const alpha = Math.max(0.2, Math.min(1, (p.scale - 0.4) / 0.8));
-        ctx.save();
+        const r = Math.max(0.8, p.currentSize);
+
+        ctx.globalAlpha = alpha * 0.4;
+        ctx.fillStyle = p.glowColor;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r * 2.2, 0, Math.PI * 2);
+        ctx.fill();
+
         ctx.globalAlpha = alpha;
         ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = p.z < 0 ? 12 : 4;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.8, p.size), 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fill();
-        ctx.restore();
       }
 
-      // Cubes
-      cubes.forEach((cube) => {
+      // Orbiting Cubes
+      for (let i = 0; i < cubes.length; i++) {
+        const cube = cubes[i];
         cube.angle += cube.speed;
         const cubeDistance = radius * cube.distanceRatio;
         const cx = Math.cos(cube.angle) * cubeDistance;
@@ -203,38 +235,42 @@ export default function Hero3DCanvas() {
         ctx.save();
         ctx.translate(px, py);
         ctx.rotate(globalAngle + cube.angle);
+        ctx.globalAlpha = Math.max(0.3, Math.min(0.9, scale));
         ctx.fillStyle = cube.color;
-        ctx.shadowColor = cube.color;
-        ctx.shadowBlur = 15;
+        ctx.strokeStyle = cube.borderColor;
+        ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.rect(-sz / 2, -sz / 2, sz, sz);
         ctx.fill();
+        ctx.stroke();
         ctx.restore();
-      });
+      }
 
       ctx.restore();
       animationFrameId = requestAnimationFrame(render);
     };
 
-    // Delay initial render slightly to let layout settle (fixes GitHub Pages)
-    requestAnimationFrame(() => {
+    animationFrameId = requestAnimationFrame((time) => {
+      lastTime = time;
       updateCanvasSize();
-      render();
+      render(time);
     });
 
     return () => {
       cancelAnimationFrame(animationFrameId);
       if (resizeObserver) resizeObserver.disconnect();
       window.removeEventListener('resize', updateCanvasSize);
+      window.removeEventListener('scroll', updateCanvasSize);
       window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden">
+    <div ref={containerRef} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
       <canvas
         ref={canvasRef}
-        className="block cursor-grab active:cursor-grabbing"
+        className="block"
       />
       {/* Orbiting rings */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">

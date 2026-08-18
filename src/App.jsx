@@ -44,7 +44,7 @@ export default function App() {
     revealElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  });
+  }, [activePage]);
 
   const renderPage = () => {
     switch (activePage) {

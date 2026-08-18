@@ -1,12 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 export default function Tilt3DCard({ children, className = '' }) {
-  const cardRef = useRef(null);
-  const [glareStyle, setGlareStyle] = useState({ opacity: 0 });
+  const glareRef = useRef(null);
 
   const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const card = cardRef.current;
+    if (!glareRef.current) return;
+    const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
 
     const x = e.clientX - rect.left;
@@ -15,31 +14,25 @@ export default function Tilt3DCard({ children, className = '' }) {
     const glareX = (x / rect.width) * 100;
     const glareY = (y / rect.height) * 100;
 
-    setGlareStyle({
-      opacity: 0.35,
-      background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(234, 88, 12, 0.25) 0%, rgba(234, 88, 12, 0) 65%)`,
-      transition: 'opacity 0.2s ease-out'
-    });
+    glareRef.current.style.opacity = '0.35';
+    glareRef.current.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(234, 88, 12, 0.25) 0%, rgba(234, 88, 12, 0) 65%)`;
   };
 
   const handleMouseLeave = () => {
-    setGlareStyle({
-      opacity: 0,
-      transition: 'opacity 0.5s ease-out'
-    });
+    if (!glareRef.current) return;
+    glareRef.current.style.opacity = '0';
   };
 
   return (
     <div
-      ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`relative overflow-hidden rounded-2xl ${className}`}
     >
       {/* Specular Glare Highlight */}
       <div
-        className="pointer-events-none absolute inset-0 z-20 rounded-2xl"
-        style={glareStyle}
+        ref={glareRef}
+        className="pointer-events-none absolute inset-0 z-20 rounded-2xl transition-opacity duration-300 opacity-0"
       />
       {children}
     </div>
