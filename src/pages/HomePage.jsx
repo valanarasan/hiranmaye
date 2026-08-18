@@ -1,24 +1,19 @@
 import React from 'react';
-import { ArrowRight, Target, Palette, Search, Zap, CheckCircle2, Shield, Sparkles, TrendingUp, Cpu, MessageSquare, Handshake, Compass, Share2, Layout, FileText, Bot, Briefcase, Layers } from 'lucide-react';
-import { companyDetails, processSteps, whyChooseCards, servicesData, industriesServed } from '../data/siteData';
+import { 
+  ArrowRight, Target, Palette, Sparkles, 
+  TrendingUp, Cpu, MessageSquare, Handshake, 
+  Check
+} from 'lucide-react';
+
+
+import { companyDetails, whyChooseCards, industriesServed } from '../data/siteData';
 import Hero3DCanvas from '../components/Hero3DCanvas';
 import Tilt3DCard from '../components/Tilt3DCard';
-import Process3DPipeline from '../components/Process3DPipeline';
-import ROICalculator3D from '../components/ROICalculator3D';
-
-const serviceIconMap = {
-  'digital-strategy': Compass,
-  'social-media': Share2,
-  'web-development': Layout,
-  'branding-design': Palette,
-  'content-marketing': FileText,
-  'performance-marketing': Zap,
-  'ai-marketing': Bot,
-  'seo-aeo-geo': Search,
-  'meta-google-ads': Target,
-  'business-consulting': Briefcase,
-  'outdoor-branding': Layers
-};
+import StoryChapterNav from '../components/StoryChapterNav';
+import GrowthCrossroadsInteractive from '../components/GrowthCrossroadsInteractive';
+import StoryProcessTimeline from '../components/StoryProcessTimeline';
+import InteractiveROISimulator from '../components/InteractiveROISimulator';
+import StoryTestimonials from '../components/StoryTestimonials';
 
 const whyChooseIconMap = {
   'strategy-first': Target,
@@ -31,22 +26,31 @@ const whyChooseIconMap = {
 
 export default function HomePage({ setActivePage, onOpenConsultation }) {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full overflow-hidden bg-white selection:bg-orange-500 selection:text-white">
+      
+      {/* Floating Story Navigator & Reading Tracker */}
+      <StoryChapterNav />
 
-      {/* ============================================
-          1. HERO SECTION
-          ============================================ */}
-      <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-24 pb-16">
-        {/* 3D Canvas Background */}
+      {/* =========================================================================
+          CHAPTER 01 / THE SPARK: Ambition & Vision (Hero Section)
+          ========================================================================= */}
+      <section id="chapter-1" className="relative min-h-[92vh] flex flex-col justify-center items-center pt-24 pb-16 px-4 sm:px-8">
+        {/* 3D Dynamic Ambient Canvas */}
         <div className="absolute inset-0 z-0">
           <Hero3DCanvas />
         </div>
 
-        {/* Top ambient glow */}
+        {/* Ambient Top Glow */}
         <div className="glow-top" />
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 sm:px-8 max-w-4xl mx-auto space-y-6">
+        {/* Hero Narrative Core */}
+        <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6 pt-4">
+          
+          {/* Story Chapter Indicator Badge */}
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-mono font-bold tracking-wider animate-fade-in shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+            <span>CHAPTER 01 &bull; THE SPARK</span>
+          </div>
 
           {/* Main Headline */}
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95] select-none">
@@ -76,248 +80,233 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
               <span>Our Work</span>
             </button>
           </div>
-
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 pointer-events-none">
+
+        {/* Scroll Journey Indicator */}
+        <div className="pt-12 pb-4 flex flex-col items-center space-y-2 pointer-events-none z-10">
+          <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
+            Scroll to follow the journey
+          </span>
           <div className="w-5 h-8 rounded-full border border-zinc-300 flex items-start justify-center p-1.5">
-            <div className="w-1 h-2 rounded-full bg-orange-500 animate-pulse" />
+            <div className="w-1.5 h-2.5 rounded-full bg-orange-500 animate-pulse" />
           </div>
         </div>
-      </section>
 
-      {/* ============================================
-          TRUST STRIP & STATS
-          ============================================ */}
-      <section className="py-12 px-4 sm:px-8 border-y border-zinc-100 bg-zinc-50/60">
-        <div className="max-w-5xl mx-auto space-y-10">
-          
-          {/* Trust Strip */}
-          <div className="text-center space-y-3">
-            <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">
-              Trusted by Ambitious Brands Across
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-              {companyDetails.trustStrip.map((item) => (
-                <span
-                  key={item}
-                  className="px-4 py-1.5 rounded-full text-xs font-medium bg-white text-zinc-700 border border-zinc-200/80 shadow-xs"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Stats Counters */}
-          <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-4 border-t border-zinc-200/60">
+        {/* Living Stats Strip */}
+        <div className="w-full max-w-5xl mx-auto pt-6 z-10">
+          <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 rounded-3xl bg-white/80 backdrop-blur-md border border-zinc-200/80 shadow-lg shadow-black/5">
             {companyDetails.stats.map((stat, idx) => (
-              <Tilt3DCard key={idx} maxTilt={8}>
-                <div className="text-center py-6 px-4 rounded-2xl glass-dark glass-dark-hover border-zinc-200/80 group shadow-sm">
-                  <div className="text-3xl sm:text-5xl font-black gradient-text-hero">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm text-zinc-600 font-semibold mt-2 uppercase tracking-wider">
-                    {stat.label}
-                  </div>
+              <div key={idx} className="text-center py-3 px-2 border-r last:border-r-0 border-zinc-100">
+                <div className="text-2xl sm:text-4xl font-black gradient-text-hero">
+                  {stat.value}
                 </div>
-              </Tilt3DCard>
+                <div className="text-[11px] sm:text-xs text-zinc-600 font-bold mt-1 uppercase tracking-wider">
+                  {stat.label}
+                </div>
+              </div>
             ))}
           </div>
+        </div>
 
+      </section>
+
+      {/* =========================================================================
+          NARRATIVE TRANSITION: The Growth Crossroads (Interactive Before vs After)
+          ========================================================================= */}
+      <section className="py-16 sm:py-24 px-4 sm:px-8 border-y border-zinc-100 bg-zinc-50/70 relative">
+        <div className="reveal">
+          <GrowthCrossroadsInteractive onOpenConsultation={onOpenConsultation} />
         </div>
       </section>
 
-
-      {/* ============================================
-          2. WHO WE ARE
-          ============================================ */}
-      <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-5 space-y-4 reveal">
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
-                <span>Who We Are</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-zinc-900 tracking-tight leading-tight">
-                Your Strategic Partner for Sustainable Digital Growth
-              </h2>
-            </div>
-
-            <div className="lg:col-span-7 space-y-4 text-zinc-600 leading-relaxed text-sm sm:text-base reveal">
-              <p>
-                <strong className="text-zinc-900">HIRANMAYE DIGITAL</strong> is a full-service digital marketing agency based in Bangalore, dedicated to helping businesses grow through strategic marketing, powerful branding, intelligent automation, and measurable performance.
-              </p>
-              <p>
-                We don't believe in generic marketing campaigns. Every strategy we develop is tailored to your business objectives, target audience, industry landscape, and growth ambitions.
-              </p>
-              <p>
-                By combining creativity, technology, analytics, and AI-driven insights, we create marketing systems that generate real business outcomes, not just impressions or clicks.
-              </p>
-              <p>
-                Whether you're a startup looking to establish your presence or an established business aiming to scale, we partner with you to build sustainable digital growth.
-              </p>
-              <div className="pt-2">
-                <button
-                  onClick={() => setActivePage('about')}
-                  className="text-orange-600 hover:text-orange-700 font-bold text-sm inline-flex items-center space-x-2 transition-colors cursor-pointer"
-                >
-                  <span>Learn more about our vision & approach</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================
-          3. WHY CHOOSE HIRANMAYE DIGITAL?
-          ============================================ */}
-      <section className="py-20 sm:py-24 px-4 sm:px-8 lg:px-16 bg-zinc-50/60 border-y border-zinc-200/70 relative">
-        <div className="max-w-6xl mx-auto">
+      {/* =========================================================================
+          CHAPTER 02 / THE SHIFT: The Philosophy & Mindset
+          ========================================================================= */}
+      <section id="chapter-2" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
+        <div className="max-w-6xl mx-auto space-y-16">
           
-          <div className="reveal text-center space-y-3 max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
-              <span>Why Choose Us</span>
+          {/* Chapter Header */}
+          <div className="text-center space-y-3 max-w-3xl mx-auto reveal">
+            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-mono font-bold tracking-wider">
+              <span>CHAPTER 02 &bull; THE SHIFT</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
-              More Than a Marketing Agency — Your Business Growth Partner
-            </h2>
-          </div>
-
-          <div className="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyChooseCards.map((card) => {
-              const IconComp = whyChooseIconMap[card.id] || Sparkles;
-              return (
-                <Tilt3DCard key={card.id} maxTilt={6}>
-                  <div className="glass-dark glass-dark-hover rounded-2xl p-7 border-zinc-200/80 h-full flex flex-col justify-between group shadow-sm">
-                    <div>
-                      <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
-                        <IconComp className="w-5 h-5" />
-                      </div>
-                      <h3 className="text-lg font-bold text-zinc-900 mb-2 group-hover:text-orange-600 transition-colors">
-                        {card.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                        {card.description}
-                      </p>
-                    </div>
-                  </div>
-                </Tilt3DCard>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ============================================
-          4. OUR SERVICES (10 + 1 Services Grid)
-          ============================================ */}
-      <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
-        <div className="max-w-6xl mx-auto">
-          
-          <div className="reveal text-center space-y-4 max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
-              <span>Our Services</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
-              Comprehensive Digital Solutions Designed for Business Growth
+            <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight leading-tight">
+              Strategy Before Spend. Outcomes Before Vanity Metrics.
             </h2>
             <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
-              From strategic planning to execution and optimization, we offer end-to-end digital marketing services that help businesses attract customers, increase visibility, and accelerate growth.
+              We founded <strong className="text-zinc-900">HIRANMAYE DIGITAL</strong> on a singular conviction: businesses don't need more random marketing activity; they need a coherent growth architecture that converts every marketing rupee into quantifiable enterprise value.
             </p>
           </div>
 
-          <div className="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {servicesData.map((srv, idx) => {
-              const IconComp = serviceIconMap[srv.id] || Compass;
-              return (
-                <Tilt3DCard key={srv.id} maxTilt={6}>
-                  <div
-                    onClick={() => setActivePage('services')}
-                    className="glass-dark glass-dark-hover rounded-2xl p-6 sm:p-7 border-zinc-200/80 cursor-pointer group h-full flex flex-col justify-between shadow-sm"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all">
-                          <IconComp className="w-5 h-5" />
-                        </div>
-                        <span className="text-xs font-mono text-zinc-400 font-bold">
-                          {String(idx + 1).padStart(2, '0')}
-                        </span>
-                      </div>
-
-                      <h3 className="text-base sm:text-lg font-bold text-zinc-900 group-hover:text-orange-600 transition-colors mb-2">
-                        {srv.title}
-                      </h3>
-
-                      <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                        {srv.shortDesc}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center space-x-1.5 text-xs font-bold text-orange-600 mt-5 pt-3 border-t border-zinc-100 group-hover:translate-x-1 transition-transform">
-                      <span>View details</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
+          {/* 3 Core Pillars of Transformation */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+            
+            <Tilt3DCard maxTilt={6}>
+              <div className="bg-white rounded-3xl p-7 border border-zinc-200/90 shadow-sm h-full flex flex-col justify-between group hover:border-orange-500/40 hover:shadow-xl hover:shadow-orange-500/5 transition-all">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center mb-5 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                    <Target className="w-6 h-6" />
                   </div>
-                </Tilt3DCard>
-              );
-            })}
+                  <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">Pillar I</span>
+                  <h3 className="text-lg font-bold text-zinc-900 mt-1 mb-2 group-hover:text-orange-600 transition-colors">
+                    Forensic Market Intelligence
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                    We dissect competitor weaknesses, map high-intent buying queries, and engineer messaging that addresses the exact pain points of your dream clients.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-zinc-100 flex items-center text-xs font-bold text-orange-600">
+                  <span>Zero Guesswork</span>
+                </div>
+              </div>
+            </Tilt3DCard>
+
+            <Tilt3DCard maxTilt={6}>
+              <div className="bg-white rounded-3xl p-7 border border-zinc-200/90 shadow-sm h-full flex flex-col justify-between group hover:border-orange-500/40 hover:shadow-xl hover:shadow-orange-500/5 transition-all">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center mb-5 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                    <Palette className="w-6 h-6" />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">Pillar II</span>
+                  <h3 className="text-lg font-bold text-zinc-900 mt-1 mb-2 group-hover:text-orange-600 transition-colors">
+                    Scroll-Stopping Brand Identity
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                    Premium creative design, high-converting copy, and modern visual assets that establish immediate authority and differentiate you from noisy competitors.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-zinc-100 flex items-center text-xs font-bold text-orange-600">
+                  <span>Unforgettable Presence</span>
+                </div>
+              </div>
+            </Tilt3DCard>
+
+            <Tilt3DCard maxTilt={6}>
+              <div className="bg-white rounded-3xl p-7 border border-zinc-200/90 shadow-sm h-full flex flex-col justify-between group hover:border-orange-500/40 hover:shadow-xl hover:shadow-orange-500/5 transition-all">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center mb-5 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                    <Cpu className="w-6 h-6" />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">Pillar III</span>
+                  <h3 className="text-lg font-bold text-zinc-900 mt-1 mb-2 group-hover:text-orange-600 transition-colors">
+                    AI-Driven Funnel Precision
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                    Automated lead capture, machine-learning bid optimizations, server-side attribution, and continuous multivariate testing to continually drive down acquisition costs.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-zinc-100 flex items-center text-xs font-bold text-orange-600">
+                  <span>Predictable Scaling</span>
+                </div>
+              </div>
+            </Tilt3DCard>
+
+          </div>
+
+          {/* Why Choose Us Grid */}
+          <div className="pt-8 border-t border-zinc-200/80 reveal">
+            <div className="text-center mb-10 space-y-2">
+              <h3 className="text-2xl sm:text-3xl font-black text-zinc-900">
+                Why Industry Leaders Partner With Us
+              </h3>
+              <p className="text-xs sm:text-sm text-zinc-500">
+                Built for founders, CMOs, and business owners who value transparency and measurable growth.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {whyChooseCards.map((card) => {
+                const IconComp = whyChooseIconMap[card.id] || Sparkles;
+                return (
+                  <div
+                    key={card.id}
+                    className="p-6 rounded-2xl bg-zinc-50/80 border border-zinc-200/80 hover:bg-white hover:border-orange-500/30 transition-all duration-300 group"
+                  >
+                    <div className="flex items-center space-x-3 mb-3">
+                      <div className="w-9 h-9 rounded-xl bg-orange-500/10 text-orange-600 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-colors shrink-0">
+                        <IconComp className="w-4 h-4" />
+                      </div>
+                      <h4 className="text-sm font-bold text-zinc-900 group-hover:text-orange-600 transition-colors">
+                        {card.title}
+                      </h4>
+                    </div>
+                    <p className="text-xs text-zinc-600 leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
         </div>
       </section>
 
-      {/* ============================================
-          5. OUR PROCESS — 5 Steps
-          ============================================ */}
-      <section className="py-20 sm:py-24 px-4 sm:px-8 lg:px-16 bg-zinc-50/60 border-y border-zinc-200/70">
-        <div className="max-w-5xl mx-auto">
-          <div className="reveal text-center space-y-3 mb-12">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
-              <span>Our Process</span>
+      {/* =========================================================================
+          CHAPTER 03 / THE BLUEPRINT: The 5-Stage Transformation Journey
+          ========================================================================= */}
+      <section id="chapter-3" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 bg-zinc-50/70 border-y border-zinc-200/80 relative">
+        <div className="reveal">
+          <StoryProcessTimeline onOpenConsultation={onOpenConsultation} />
+        </div>
+      </section>
+
+      {/* =========================================================================
+          CHAPTER 04 / THE PROOF: Interactive ROI Simulator & Success Chronicles
+          ========================================================================= */}
+      <section id="chapter-4" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
+        <div className="max-w-6xl mx-auto space-y-20">
+          
+          {/* Chapter Header */}
+          <div className="text-center space-y-3 max-w-3xl mx-auto reveal">
+            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-mono font-bold tracking-wider">
+              <span>CHAPTER 04 &bull; THE PROOF</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
-              Our Proven Growth Framework
+              Measurable Business Outcomes, Not Vanity Metrics
             </h2>
+            <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
+              We hold ourselves accountable to pipeline velocity, conversion volume, and revenue generated. Test our growth simulator below.
+            </p>
           </div>
+
+          {/* Interactive ROI Simulator */}
           <div className="reveal">
-            <Process3DPipeline processSteps={processSteps} />
+            <InteractiveROISimulator onOpenConsultation={onOpenConsultation} />
           </div>
+
+          {/* Real-World Transformation Case Chronicles */}
+          <div className="reveal pt-4 border-t border-zinc-200/80">
+            <StoryTestimonials />
+          </div>
+
         </div>
       </section>
 
-      {/* ============================================
-          ROI CALCULATOR
-          ============================================ */}
-      <section className="section-cinematic px-4 sm:px-8">
-        <div className="reveal">
-          <ROICalculator3D onOpenConsultation={onOpenConsultation} />
-        </div>
-      </section>
-
-      {/* ============================================
-          6. INDUSTRIES MARQUEE
-          ============================================ */}
-      <section className="py-16 sm:py-20 relative overflow-hidden">
-        <div className="reveal text-center mb-10 px-4 sm:px-8">
-          <h2 className="text-2xl sm:text-4xl font-black text-zinc-900 tracking-tight">
-            Industries We Accelerate
+      {/* =========================================================================
+          CHAPTER 05 / THE HORIZON: Industries We Accelerate
+          ========================================================================= */}
+      <section id="chapter-5" className="py-20 sm:py-24 relative overflow-hidden bg-zinc-50/70 border-t border-zinc-200/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-12 text-center space-y-3 reveal">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-mono font-bold tracking-wider">
+            <span>CHAPTER 05 &bull; THE HORIZON</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
+            Tailored Playbooks for High-Growth Sectors
           </h2>
+          <p className="text-sm sm:text-base text-zinc-600 max-w-2xl mx-auto">
+            From industrial B2B giants to luxury real estate developers and multi-speciality healthcare networks, we tailor our systems to each domain's buying cycle.
+          </p>
         </div>
 
-        <div className="relative mb-3">
+        {/* Dual Direction Ticker */}
+        <div className="relative mb-4">
           <div className="flex animate-marquee-left">
             {[...industriesServed, ...industriesServed].map((ind, idx) => (
               <div
                 key={`r1-${idx}`}
-                className="shrink-0 mx-2 px-6 py-3 rounded-full border border-zinc-200 bg-white text-sm font-semibold text-zinc-700 hover:text-orange-600 hover:border-orange-500/40 hover:bg-orange-50 transition-all duration-300 cursor-default whitespace-nowrap shadow-sm"
+                className="shrink-0 mx-2 px-6 py-3.5 rounded-2xl border border-zinc-200 bg-white text-xs sm:text-sm font-bold text-zinc-800 hover:text-orange-600 hover:border-orange-500/40 hover:shadow-md transition-all duration-300 cursor-default whitespace-nowrap shadow-xs"
               >
                 {ind.name}
               </div>
@@ -330,7 +319,7 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
             {[...industriesServed.slice().reverse(), ...industriesServed.slice().reverse()].map((ind, idx) => (
               <div
                 key={`r2-${idx}`}
-                className="shrink-0 mx-2 px-6 py-3 rounded-full border border-zinc-200 bg-white text-sm font-semibold text-zinc-700 hover:text-orange-600 hover:border-orange-500/40 hover:bg-orange-50 transition-all duration-300 cursor-default whitespace-nowrap shadow-sm"
+                className="shrink-0 mx-2 px-6 py-3.5 rounded-2xl border border-zinc-200 bg-white text-xs sm:text-sm font-bold text-zinc-800 hover:text-orange-600 hover:border-orange-500/40 hover:shadow-md transition-all duration-300 cursor-default whitespace-nowrap shadow-xs"
               >
                 {ind.name}
               </div>
@@ -338,40 +327,73 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
           </div>
         </div>
 
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        {/* Edge Gradients */}
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-50 to-transparent z-10 pointer-events-none" />
       </section>
 
-      {/* ============================================
-          7. FINAL CTA SECTION
-          ============================================ */}
-      <section className="section-cinematic px-4 sm:px-8 relative pb-20">
-        <div className="glow-accent left-1/2 -translate-x-1/2 top-0" />
+      {/* =========================================================================
+          CHAPTER 06 / THE NEXT CHAPTER: Your Breakthrough (Final CTA Gateway)
+          ========================================================================= */}
+      <section id="chapter-6" className="py-20 sm:py-28 px-4 sm:px-8 relative bg-zinc-950 text-white overflow-hidden">
+        {/* Cinematic Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="reveal text-center space-y-6 max-w-3xl mx-auto relative z-10">
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-zinc-900 tracking-tight">
-            Ready to Grow Your Business?
+        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10 reveal">
+          
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/20 border border-orange-500/40 text-orange-300 text-xs font-mono font-bold tracking-wider">
+            <span className="w-2 h-2 rounded-full bg-orange-400 animate-ping" />
+            <span>CHAPTER 06 &bull; THE NEXT CHAPTER</span>
+          </div>
+
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]">
+            Your Story of Market Dominance{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-200">
+              Begins Today
+            </span>
           </h2>
-          <p className="text-base sm:text-lg text-zinc-600 max-w-xl mx-auto leading-relaxed">
-            Let's build a digital strategy that delivers measurable results, strengthens your brand, and drives sustainable growth.
+
+          <p className="text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+            The next 12 months will either be another cycle of unpredictable marketing, or the year your business commands its market. Let's write that next chapter together.
           </p>
+
+          {/* Action Gateway */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={onOpenConsultation}
-              className="btn-glow px-8 py-4 text-xs uppercase tracking-wider font-bold inline-flex items-center space-x-3 shadow-xl shadow-orange-500/20"
+              className="w-full sm:w-auto px-9 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm uppercase tracking-wider font-extrabold flex items-center justify-center space-x-3 shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 cursor-pointer"
             >
-              <span>Book a Free Strategy Consultation</span>
+              <span>Book 1-on-1 Strategy Consultation</span>
               <ArrowRight className="w-4 h-4" />
             </button>
+
             <a
-              href={`https://wa.me/${companyDetails.whatsapp.replace(/[^0-9]/g, '')}?text=Hi%20Hiranmaye%20Digital%2C%20I%27d%20like%20to%20talk%20to%20your%20experts`}
+              href={`https://wa.me/${companyDetails.whatsapp.replace(/[^0-9]/g, '')}?text=Hi%20Hiranmaye%20Digital%2C%20I%27d%20like%20to%20discuss%20our%20growth%20strategy`}
               target="_blank"
               rel="noreferrer"
-              className="btn-ghost px-7 py-4 text-xs uppercase tracking-wider font-bold inline-flex items-center space-x-2"
+              className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm uppercase tracking-wider font-bold flex items-center justify-center space-x-2 transition-all cursor-pointer"
             >
-              <span>Talk to Our Experts</span>
+              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <span>Direct WhatsApp Fast-Track</span>
             </a>
           </div>
+
+          {/* Transparency & Credibility Ribbon */}
+          <div className="pt-8 border-t border-zinc-800 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400">
+            <span className="flex items-center space-x-1.5">
+              <Check className="w-4 h-4 text-emerald-400" />
+              <span>Complimentary 45-Min Growth Deep Dive</span>
+            </span>
+            <span className="flex items-center space-x-1.5">
+              <Check className="w-4 h-4 text-emerald-400" />
+              <span>Competitor & Keyword Intelligence Report Included</span>
+            </span>
+            <span className="flex items-center space-x-1.5">
+              <Check className="w-4 h-4 text-emerald-400" />
+              <span>Bangalore Headquarters & Global Reach</span>
+            </span>
+          </div>
+
         </div>
       </section>
 
