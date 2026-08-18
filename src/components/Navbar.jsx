@@ -27,16 +27,20 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300 py-4 bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        scrolled || mobileMenuOpen
+          ? 'bg-white/95 backdrop-blur-md shadow-xs border-b border-zinc-200/70 py-3'
+          : 'bg-transparent py-3 sm:py-4'
+      }`}
       style={{ transform: 'translate3d(0, 0, 0)', WebkitTransform: 'translate3d(0, 0, 0)' }}
     >
-      <div className="w-full px-4 sm:px-8 lg:px-16 2xl:px-20">
+      <div className="w-full px-3.5 sm:px-8 lg:px-16 2xl:px-20">
         <div className="flex items-center justify-between">
 
           {/* Logo */}
           <div
             onClick={() => handleNavClick('home')}
-            className="cursor-pointer"
+            className="cursor-pointer shrink-0"
           >
             <Logo variant="horizontal" showTagline={true} />
           </div>
@@ -72,17 +76,17 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
             </button>
           </div>
 
-          {/* Mobile */}
+          {/* Mobile Actions */}
           <div className="flex md:hidden items-center space-x-2">
             <button
               onClick={onOpenConsultation}
-              className="px-3 py-1.5 rounded-lg bg-orange-500/15 text-orange-700 border border-orange-500/30 cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-orange-500/15 text-orange-700 text-xs font-bold border border-orange-500/30 cursor-pointer active:scale-95 transition-transform"
             >
               Start
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-black/[0.02] text-zinc-700 border border-zinc-200 cursor-pointer"
+              className="p-2 rounded-xl bg-black/[0.03] text-zinc-800 border border-zinc-200 cursor-pointer active:scale-95 transition-transform"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -93,15 +97,15 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-dark border-t border-zinc-200 px-4 pt-4 pb-6 mt-2 space-y-1 animate-fade-in">
+        <div className="md:hidden bg-white/98 backdrop-blur-xl border-t border-zinc-200/80 px-4 pt-3 pb-6 mt-3 space-y-1 animate-fade-in shadow-xl max-h-[calc(100vh-4.5rem)] overflow-y-auto">
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => handleNavClick(link.id)}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium cursor-pointer ${
+              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold cursor-pointer transition-all ${
                 activePage === link.id
-                  ? 'bg-zinc-950 text-white'
-                  : 'text-zinc-650 hover:text-zinc-950 hover:bg-zinc-200/80'
+                  ? 'bg-zinc-950 text-white shadow-sm'
+                  : 'text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100'
               }`}
             >
               {link.label}
@@ -110,9 +114,9 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
           <div className="pt-3">
             <button
               onClick={() => { setMobileMenuOpen(false); onOpenConsultation(); }}
-              className="w-full btn-glow py-3 text-center text-sm font-bold uppercase tracking-wider"
+              className="w-full btn-glow py-3.5 text-center text-xs font-bold uppercase tracking-wider shadow-md shadow-orange-500/20"
             >
-              Get Started
+              Book Strategy Consultation
             </button>
           </div>
         </div>

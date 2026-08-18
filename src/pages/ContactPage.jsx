@@ -24,23 +24,23 @@ export default function ContactPage({ onOpenConsultation }) {
     <div className="relative w-full">
 
       {/* HERO */}
-      <section className="section-cinematic min-h-[45vh] px-4 sm:px-8 relative pt-32 pb-14">
+      <section className="section-cinematic min-h-[45vh] px-4 sm:px-8 relative pt-28 sm:pt-32 pb-12 sm:pb-14">
         <div className="glow-top" />
         <div className="reveal text-center space-y-4 max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-700 text-xs font-semibold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-700 text-xs font-semibold uppercase tracking-wider mb-1">
             <span>Get in Touch</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-zinc-900 leading-[1.05]">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-zinc-900 leading-[1.08]">
             Let's Discuss Your Business Growth
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
             We're always ready to discuss your business goals and explore how strategic digital marketing can help you achieve measurable growth.
           </p>
         </div>
       </section>
 
       {/* MAIN SECTION */}
-      <section className="py-8 sm:py-16 px-4 sm:px-8 lg:px-16">
+      <section className="py-8 sm:py-16 px-3.5 sm:px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
 
           {/* LEFT SIDE: Contact Info, Hours, Socials, Strategy Session, WhatsApp */}

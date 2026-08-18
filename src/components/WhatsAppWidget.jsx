@@ -13,12 +13,12 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end space-y-3">
       {open && (
-        <div className="w-72 glass-dark rounded-2xl p-4 border-zinc-200 shadow-2xl animate-fade-in space-y-3">
+        <div className="w-[calc(100vw-2rem)] max-w-xs glass-dark rounded-2xl p-4 border-zinc-200 shadow-2xl animate-fade-in space-y-3">
           <div className="flex items-center justify-between pb-2 border-b border-zinc-100">
             <div className="flex items-center space-x-2">
-              <div className="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[10px] font-bold">
+              <div className="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[10px] font-bold shadow-xs">
                 WA
               </div>
               <div>
@@ -27,7 +27,7 @@ export default function WhatsAppWidget() {
               </div>
             </div>
             <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-zinc-900 p-1 cursor-pointer">
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
@@ -36,12 +36,12 @@ export default function WhatsAppWidget() {
               "Interested in SEO & AI optimization.",
               "Need Meta & Google Ads.",
               "Looking for website redesign.",
-              "Want a growth audit."
+              "Want a growth consultation."
             ].map((txt) => (
               <button
                 key={txt}
                 onClick={() => setMessage(txt)}
-                className="w-full text-left px-3 py-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-xs text-zinc-300 border border-white/[0.06] transition-colors cursor-pointer"
+                className="w-full text-left px-3 py-2 rounded-lg bg-zinc-50 hover:bg-zinc-100 text-xs text-zinc-700 border border-zinc-200/80 transition-colors cursor-pointer"
               >
                 {txt}
               </button>
@@ -53,11 +53,11 @@ export default function WhatsAppWidget() {
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="flex-1 input-dark text-xs !py-2"
+              className="flex-1 input-dark text-xs !py-2.5"
             />
             <button
               onClick={handleSend}
-              className="bg-emerald-500 hover:bg-emerald-400 text-white p-2 rounded-lg transition-all cursor-pointer"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white p-2.5 rounded-xl transition-all cursor-pointer shadow-md shadow-emerald-500/20 active:scale-95"
               title="Chat on WhatsApp"
             >
               <Send className="w-3.5 h-3.5" />
@@ -68,7 +68,7 @@ export default function WhatsAppWidget() {
 
       <button
         onClick={() => setOpen(!open)}
-        className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white flex items-center justify-center shadow-lg shadow-emerald-500/25 hover:scale-110 transition-transform cursor-pointer"
+        className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white flex items-center justify-center shadow-lg shadow-emerald-500/25 hover:scale-105 active:scale-95 transition-transform cursor-pointer"
         aria-label="WhatsApp Support"
       >
         {open ? (

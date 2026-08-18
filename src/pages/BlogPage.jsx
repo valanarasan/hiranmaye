@@ -33,27 +33,27 @@ export default function BlogPage({ onOpenConsultation, setActivePage }) {
       {/* ============================================
           1. HERO SECTION
           ============================================ */}
-      <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative pt-32 pb-16">
+      <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative pt-28 sm:pt-32 pb-14 sm:pb-16">
         <div className="glow-top" />
-        <div className="reveal text-center space-y-6 max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
+        <div className="reveal text-center space-y-5 max-w-4xl mx-auto relative z-10">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
             <span>Insights & Research</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-zinc-950 leading-[1.08] font-heading">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black tracking-tight text-zinc-950 leading-[1.08] font-heading">
             {blogContent.hero.heading}
           </h1>
 
-          <p className="text-base sm:text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
             {blogContent.hero.subHeading}
           </p>
 
           {/* Search bar */}
-          <div className="relative max-w-lg mx-auto pt-2">
-            <Search className="w-4 h-4 absolute left-4 top-5 text-zinc-400" />
+          <div className="relative max-w-lg mx-auto pt-1 sm:pt-2">
+            <Search className="w-4 h-4 absolute left-4 top-4 sm:top-5 text-zinc-400" />
             <input
               type="text"
-              placeholder="Search marketing strategies, SEO, AI guides..."
+              placeholder="Search marketing strategies, SEO, AI..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full input-dark !pl-11 py-3 text-sm rounded-xl"
@@ -61,14 +61,14 @@ export default function BlogPage({ onOpenConsultation, setActivePage }) {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-1">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat;
               return (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                  className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider border transition-all cursor-pointer ${
                     isActive
                       ? 'bg-orange-500 text-white border-orange-500 shadow-sm'
                       : 'bg-white/80 border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:border-zinc-300'

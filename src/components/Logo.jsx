@@ -113,19 +113,19 @@ export default function Logo({
 
   // Horizontal layout (Navbar & Footer default)
   return (
-    <div className={`flex items-center space-x-3 select-none ${className}`}>
+    <div className={`flex items-center space-x-2.5 sm:space-x-3 select-none ${className}`}>
       <div className="relative flex-shrink-0 transition-transform duration-300 hover:scale-105">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-amber-600/5 border border-amber-500/25 flex items-center justify-center p-1 shadow-sm">
-          <LotusIcon className="w-8 h-8" color="gold" />
+        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-amber-600/5 border border-amber-500/25 flex items-center justify-center p-1 shadow-sm">
+          <LotusIcon className="w-7 h-7 sm:w-8 sm:h-8" color="gold" />
         </div>
       </div>
 
-      <div className="flex flex-col justify-center leading-none">
-        <span className={`text-lg font-brand-serif font-bold tracking-tight ${textColor} transition-colors`}>
+      <div className="flex flex-col justify-center leading-none min-w-0">
+        <span className={`text-base sm:text-lg font-brand-serif font-bold tracking-tight ${textColor} transition-colors truncate`}>
           Hiranmaye Digital
         </span>
         {showTagline && (
-          <span className={`font-brand-script text-sm tracking-wide mt-0.5 ${taglineColor}`}>
+          <span className={`font-brand-script text-xs sm:text-sm tracking-wide mt-0.5 ${taglineColor} truncate`}>
             Strategy drives growth
           </span>
         )}

@@ -26,24 +26,20 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           1. HERO SECTION
           ============================================ */}
-      <section className="section-cinematic min-h-[55vh] px-4 sm:px-8 relative pt-32 pb-16">
+      <section className="section-cinematic min-h-[50vh] px-4 sm:px-8 relative pt-28 sm:pt-32 pb-14 sm:pb-16">
         <div className="glow-top" />
-        <div className="reveal text-center space-y-6 max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
+        <div className="reveal text-center space-y-5 max-w-4xl mx-auto relative z-10">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-700 text-xs font-bold uppercase tracking-wider">
             <span>Our Services</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-zinc-950 leading-[1.05] font-heading">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black tracking-tight text-zinc-950 leading-[1.08] font-heading">
             Strategic Digital Solutions That Drive{' '}
             <span className="gradient-text-hero">Measurable Business Growth</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-zinc-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-zinc-600 max-w-3xl mx-auto leading-relaxed">
             At <strong className="text-zinc-900">HIRANMAYE DIGITAL</strong>, we don't believe in one-size-fits-all marketing. Every business is unique, and so are its challenges. Our services are designed to help organizations strengthen their digital presence, generate qualified leads, build lasting customer relationships, and achieve sustainable growth through strategy, creativity, technology, and data-driven execution.
-          </p>
-
-          <p className="text-sm text-zinc-500 max-w-2xl mx-auto">
-            Whether you're a startup building your brand or an established business looking to scale, we provide integrated digital solutions that deliver measurable business outcomes.
           </p>
         </div>
       </section>
@@ -51,8 +47,8 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
       {/* ============================================
           2. SERVICES GRID
           ============================================ */}
-      <section className="py-12 sm:py-20 px-4 sm:px-8 lg:px-16 border-t border-zinc-100 bg-zinc-50/50">
-        <div className="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <section className="py-10 sm:py-20 px-3.5 sm:px-8 lg:px-16 border-t border-zinc-100 bg-zinc-50/50">
+        <div className="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {servicesData.map((srv, idx) => {
             const IconComp = iconMap[srv.id] || Target;
 
@@ -60,28 +56,28 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
               <Tilt3DCard key={srv.id} maxTilt={6}>
                 <div
                   onClick={() => setExpandedService(srv)}
-                  className="glass-dark glass-dark-hover rounded-2xl p-7 border-zinc-200/80 cursor-pointer group h-full flex flex-col justify-between shadow-sm"
+                  className="glass-dark glass-dark-hover rounded-2xl p-6 sm:p-7 border-zinc-200/80 cursor-pointer group h-full flex flex-col justify-between shadow-sm"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
-                        <IconComp className="w-6 h-6" />
+                    <div className="flex items-center justify-between mb-4 sm:mb-5">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-600 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                        <IconComp className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
                       <span className="text-xs text-zinc-400 font-mono font-bold">
                         {String(idx + 1).padStart(2, '0')}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors leading-tight mb-2">
+                    <h3 className="text-lg sm:text-xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors leading-tight mb-1.5">
                       {srv.title}
                     </h3>
 
-                    <h4 className="text-xs font-semibold text-orange-600 uppercase tracking-wider mb-3">
+                    <h4 className="text-xs font-semibold text-orange-600 uppercase tracking-wider mb-2.5">
                       {srv.subHeading}
                     </h4>
 
                     <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
-                      {srv.fullDesc}
+                      {srv.shortDesc || srv.fullDesc}
                     </p>
                   </div>
 
@@ -102,8 +98,8 @@ export default function ServicesPage({ setActivePage, onOpenConsultation }) {
           3. SERVICE DETAIL MODAL / POPUP
           ============================================ */}
       {expandedService && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-2xl max-h-[85vh] glass-dark rounded-2xl p-6 sm:p-8 border-zinc-200 shadow-2xl overflow-y-auto">
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+          <div className="relative w-full max-w-2xl max-h-[90vh] glass-dark rounded-2xl p-5 sm:p-8 border-zinc-200 shadow-2xl overflow-y-auto">
 
             {/* Close */}
             <button
