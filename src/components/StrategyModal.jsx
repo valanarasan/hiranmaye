@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, ArrowRight, User, Mail, Phone, Building } from 'lucide-react';
 
 export default function StrategyModal({ isOpen, onClose }) {
@@ -14,6 +14,24 @@ export default function StrategyModal({ isOpen, onClose }) {
     time: '11:00 AM'
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Prevent background body scrolling when modal is active
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') resetAndClose();
+      };
+      window.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -33,8 +51,13 @@ export default function StrategyModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto glass-dark rounded-2xl p-5 sm:p-8 border-zinc-200 shadow-2xl">
+    <div 
+      onClick={(e) => {
+        if (e.target === e.currentTarget) resetAndClose();
+      }}
+      className="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md overflow-y-auto animate-fade-in"
+    >
+      <div className="relative w-full max-w-lg bg-white/95 backdrop-blur-2xl rounded-3xl p-5 sm:p-7 border border-zinc-200/90 shadow-2xl shadow-black/20 my-auto">
 
         {/* Ambient glows */}
         <div className="absolute -top-20 -right-20 w-52 h-52 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />

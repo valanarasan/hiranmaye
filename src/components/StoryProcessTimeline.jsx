@@ -92,8 +92,9 @@ export default function StoryProcessTimeline({ onOpenConsultation }) {
 
   return (
     <div className="w-full max-w-5xl mx-auto">
-      {/* Chapter 04 Header */}
+      {/* Section Header */}
       <div className="text-center space-y-3 mb-10">
+
         <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-700 text-xs font-bold uppercase tracking-wider">
           <Layers className="w-3.5 h-3.5 text-orange-600" />
           <span>The 5-Stage Transformation Journey</span>

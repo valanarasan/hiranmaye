@@ -55,7 +55,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  color: var(--text-primary);
+  color: inherit;
 }
 
 .font-brand-serif {

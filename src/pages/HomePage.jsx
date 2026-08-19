@@ -2,18 +2,14 @@ import React from 'react';
 import { 
   ArrowRight, Target, Palette, Sparkles, 
   TrendingUp, Cpu, MessageSquare, Handshake, 
-  Check
+  MessageCircle, Check
 } from 'lucide-react';
 
-
-import { companyDetails, whyChooseCards, industriesServed } from '../data/siteData';
+import { companyDetails, whyChooseCards } from '../data/siteData';
 import Hero3DCanvas from '../components/Hero3DCanvas';
 import Tilt3DCard from '../components/Tilt3DCard';
-import StoryChapterNav from '../components/StoryChapterNav';
 import GrowthCrossroadsInteractive from '../components/GrowthCrossroadsInteractive';
 import StoryProcessTimeline from '../components/StoryProcessTimeline';
-import InteractiveROISimulator from '../components/InteractiveROISimulator';
-import StoryTestimonials from '../components/StoryTestimonials';
 
 const whyChooseIconMap = {
   'strategy-first': Target,
@@ -28,39 +24,33 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
   return (
     <div className="relative w-full overflow-hidden bg-white selection:bg-orange-500 selection:text-white">
       
-      {/* Floating Story Navigator & Reading Tracker */}
-      <StoryChapterNav />
-
       {/* =========================================================================
-          CHAPTER 01 / THE SPARK: Ambition & Vision (Hero Section)
+          HERO SECTION: Ambition & Vision
           ========================================================================= */}
-      <section id="chapter-1" className="relative min-h-[92vh] flex flex-col justify-center items-center pt-24 pb-16 px-4 sm:px-8">
+      {/* =========================================================================
+          HERO SECTION: Ambition & Vision
+          ========================================================================= */}
+      <section className="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-center items-center pt-24 pb-12 sm:pb-16 px-4 sm:px-8 overflow-hidden">
         {/* 3D Dynamic Ambient Canvas */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <Hero3DCanvas />
         </div>
 
         {/* Ambient Top Glow */}
-        <div className="glow-top" />
+        <div className="glow-top pointer-events-none" />
 
-        {/* Hero Narrative Core */}
-        <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6 pt-4">
+        {/* Hero Narrative Core - Strictly Center Aligned in front of 3D render */}
+        <div className="relative z-10 text-center max-w-4xl mx-auto my-auto space-y-6 pt-4 flex flex-col items-center justify-center">
           
-          {/* Story Chapter Indicator Badge */}
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-mono font-bold tracking-wider animate-fade-in shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-            <span>CHAPTER 01 &bull; THE SPARK</span>
-          </div>
-
           {/* Main Headline */}
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95] select-none">
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95] select-none text-center">
             <span className="text-zinc-900">We Make Brands</span>
             <br />
             <span className="gradient-text-hero">Unforgettable</span>
           </h1>
 
           {/* Clean, punchy sub-copy */}
-          <p className="text-base sm:text-lg text-zinc-600 max-w-lg mx-auto leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-zinc-600 max-w-lg mx-auto leading-relaxed font-normal text-center">
             Strategy, creativity, and AI-powered performance marketing designed for measurable growth.
           </p>
 
@@ -68,47 +58,45 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <button
               onClick={onOpenConsultation}
-              className="btn-glow px-8 py-4 text-xs uppercase tracking-wider font-bold flex items-center space-x-2.5 shadow-xl shadow-orange-500/20"
+              className="btn-glow px-8 py-4 text-xs uppercase tracking-wider font-bold flex items-center space-x-2.5 shadow-xl shadow-orange-500/20 cursor-pointer"
             >
               <span>Start Growing</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => setActivePage('services')}
-              className="btn-ghost px-7 py-4 text-xs uppercase tracking-wider font-semibold flex items-center space-x-2"
+              className="btn-ghost px-7 py-4 text-xs uppercase tracking-wider font-semibold flex items-center space-x-2 cursor-pointer"
             >
               <span>Our Work</span>
             </button>
           </div>
         </div>
 
-
-        {/* Scroll Journey Indicator */}
-        <div className="pt-12 pb-4 flex flex-col items-center space-y-2 pointer-events-none z-10">
-          <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
-            Scroll to follow the journey
+        {/* Scroll Journey Indicator - Centered at Bottom */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center space-y-1.5 pointer-events-none z-10">
+          <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
+            Scroll to explore
           </span>
-          <div className="w-5 h-8 rounded-full border border-zinc-300 flex items-start justify-center p-1.5">
-            <div className="w-1.5 h-2.5 rounded-full bg-orange-500 animate-pulse" />
+          <div className="w-4 h-7 rounded-full border border-zinc-300 flex items-start justify-center p-1">
+            <div className="w-1.5 h-2 rounded-full bg-orange-500 animate-pulse" />
           </div>
         </div>
 
-        {/* Living Stats Strip */}
-        <div className="w-full max-w-5xl mx-auto pt-6 z-10">
-          <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 rounded-3xl bg-white/80 backdrop-blur-md border border-zinc-200/80 shadow-lg shadow-black/5">
-            {companyDetails.stats.map((stat, idx) => (
-              <div key={idx} className="text-center py-3 px-2 border-r last:border-r-0 border-zinc-100">
-                <div className="text-2xl sm:text-4xl font-black gradient-text-hero">
+        {/* Metrics Badge - Positioned to the Right */}
+        <div className="relative mt-8 sm:mt-0 sm:absolute sm:bottom-8 sm:right-8 lg:bottom-10 lg:right-12 z-10">
+          <div className="flex items-center gap-4 sm:gap-5 px-5 py-3.5 rounded-2xl bg-white/90 backdrop-blur-xl border border-zinc-200/90 shadow-xl shadow-black/5 hover:border-orange-500/30 transition-all">
+            {companyDetails.stats.slice(-2).map((stat, idx) => (
+              <div key={idx} className="text-center px-1 first:border-r border-zinc-200/80 first:pr-4 sm:first:pr-5">
+                <div className="text-xl sm:text-2xl font-black gradient-text-hero">
                   {stat.value}
                 </div>
-                <div className="text-[11px] sm:text-xs text-zinc-600 font-bold mt-1 uppercase tracking-wider">
+                <div className="text-[10px] sm:text-[11px] text-zinc-600 font-bold uppercase tracking-wider whitespace-nowrap mt-0.5">
                   {stat.label}
                 </div>
               </div>
             ))}
           </div>
         </div>
-
       </section>
 
       {/* =========================================================================
@@ -121,15 +109,15 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
       </section>
 
       {/* =========================================================================
-          CHAPTER 02 / THE SHIFT: The Philosophy & Mindset
+          PHILOSOPHY & MINDSET SECTION
           ========================================================================= */}
-      <section id="chapter-2" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
+      <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
         <div className="max-w-6xl mx-auto space-y-16">
           
-          {/* Chapter Header */}
+          {/* Section Header */}
           <div className="text-center space-y-3 max-w-3xl mx-auto reveal">
-            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-mono font-bold tracking-wider">
-              <span>CHAPTER 02 &bull; THE SHIFT</span>
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-700 text-xs font-bold uppercase tracking-wider">
+              <span>Our Philosophy</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight leading-tight">
               Strategy Before Spend. Outcomes Before Vanity Metrics.
@@ -244,124 +232,46 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
       </section>
 
       {/* =========================================================================
-          CHAPTER 03 / THE BLUEPRINT: The 5-Stage Transformation Journey
+          BLUEPRINT / PROCESS TIMELINE SECTION
           ========================================================================= */}
-      <section id="chapter-3" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 bg-zinc-50/70 border-y border-zinc-200/80 relative">
+      <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 bg-zinc-50/70 border-y border-zinc-200/80 relative">
         <div className="reveal">
           <StoryProcessTimeline onOpenConsultation={onOpenConsultation} />
         </div>
       </section>
 
       {/* =========================================================================
-          CHAPTER 04 / THE PROOF: Interactive ROI Simulator & Success Chronicles
+          FINAL CONVERSION CTA SECTION: High-Impact Grand Finale
           ========================================================================= */}
-      <section id="chapter-4" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 relative">
-        <div className="max-w-6xl mx-auto space-y-20">
-          
-          {/* Chapter Header */}
-          <div className="text-center space-y-3 max-w-3xl mx-auto reveal">
-            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-mono font-bold tracking-wider">
-              <span>CHAPTER 04 &bull; THE PROOF</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
-              Measurable Business Outcomes, Not Vanity Metrics
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
-              We hold ourselves accountable to pipeline velocity, conversion volume, and revenue generated. Test our growth simulator below.
-            </p>
-          </div>
-
-          {/* Interactive ROI Simulator */}
-          <div className="reveal">
-            <InteractiveROISimulator onOpenConsultation={onOpenConsultation} />
-          </div>
-
-          {/* Real-World Transformation Case Chronicles */}
-          <div className="reveal pt-4 border-t border-zinc-200/80">
-            <StoryTestimonials />
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          CHAPTER 05 / THE HORIZON: Industries We Accelerate
-          ========================================================================= */}
-      <section id="chapter-5" className="py-20 sm:py-24 relative overflow-hidden bg-zinc-50/70 border-t border-zinc-200/80">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-12 text-center space-y-3 reveal">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-mono font-bold tracking-wider">
-            <span>CHAPTER 05 &bull; THE HORIZON</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
-            Tailored Playbooks for High-Growth Sectors
-          </h2>
-          <p className="text-sm sm:text-base text-zinc-600 max-w-2xl mx-auto">
-            From industrial B2B giants to luxury real estate developers and multi-speciality healthcare networks, we tailor our systems to each domain's buying cycle.
-          </p>
-        </div>
-
-        {/* Dual Direction Ticker */}
-        <div className="relative mb-4">
-          <div className="flex animate-marquee-left">
-            {[...industriesServed, ...industriesServed].map((ind, idx) => (
-              <div
-                key={`r1-${idx}`}
-                className="shrink-0 mx-2 px-6 py-3.5 rounded-2xl border border-zinc-200 bg-white text-xs sm:text-sm font-bold text-zinc-800 hover:text-orange-600 hover:border-orange-500/40 hover:shadow-md transition-all duration-300 cursor-default whitespace-nowrap shadow-xs"
-              >
-                {ind.name}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative">
-          <div className="flex animate-marquee-right">
-            {[...industriesServed.slice().reverse(), ...industriesServed.slice().reverse()].map((ind, idx) => (
-              <div
-                key={`r2-${idx}`}
-                className="shrink-0 mx-2 px-6 py-3.5 rounded-2xl border border-zinc-200 bg-white text-xs sm:text-sm font-bold text-zinc-800 hover:text-orange-600 hover:border-orange-500/40 hover:shadow-md transition-all duration-300 cursor-default whitespace-nowrap shadow-xs"
-              >
-                {ind.name}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Edge Gradients */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-zinc-50 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-50 to-transparent z-10 pointer-events-none" />
-      </section>
-
-      {/* =========================================================================
-          CHAPTER 06 / THE NEXT CHAPTER: Your Breakthrough (Final CTA Gateway)
-          ========================================================================= */}
-      <section id="chapter-6" className="py-20 sm:py-28 px-4 sm:px-8 relative bg-zinc-950 text-white overflow-hidden">
+      <section className="py-24 sm:py-32 px-4 sm:px-8 relative bg-zinc-950 text-white overflow-hidden border-t border-zinc-800">
         {/* Cinematic Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_50%_-10%,rgba(234,88,12,0.22),rgba(0,0,0,0))] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-orange-500/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full border border-white/[0.04] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10 reveal">
           
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/20 border border-orange-500/40 text-orange-300 text-xs font-mono font-bold tracking-wider">
-            <span className="w-2 h-2 rounded-full bg-orange-400 animate-ping" />
-            <span>CHAPTER 06 &bull; THE NEXT CHAPTER</span>
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-orange-500/20 border border-orange-500/40 text-orange-400 text-xs font-bold uppercase tracking-wider shadow-lg shadow-orange-500/10">
+            <Sparkles className="w-3.5 h-3.5 text-orange-400" />
+            <span>Start Growing Today</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05]">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.08] drop-shadow-sm">
             Your Story of Market Dominance{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-200">
               Begins Today
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            The next 12 months will either be another cycle of unpredictable marketing, or the year your business commands its market. Let's write that next chapter together.
+          <p className="text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed font-normal">
+            The next 12 months will either be another cycle of unpredictable marketing, or the year your business commands its market. Let's engineer your growth machine together.
           </p>
 
           {/* Action Gateway */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={onOpenConsultation}
-              className="w-full sm:w-auto px-9 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm uppercase tracking-wider font-extrabold flex items-center justify-center space-x-3 shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 cursor-pointer"
+              className="w-full sm:w-auto px-9 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm uppercase tracking-wider font-extrabold flex items-center justify-center space-x-3 shadow-2xl shadow-orange-500/40 transition-all hover:scale-105 cursor-pointer"
             >
               <span>Book 1-on-1 Strategy Consultation</span>
               <ArrowRight className="w-4 h-4" />
@@ -371,25 +281,25 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
               href={`https://wa.me/${companyDetails.whatsapp.replace(/[^0-9]/g, '')}?text=Hi%20Hiranmaye%20Digital%2C%20I%27d%20like%20to%20discuss%20our%20growth%20strategy`}
               target="_blank"
               rel="noreferrer"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm uppercase tracking-wider font-bold flex items-center justify-center space-x-2 transition-all cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm uppercase tracking-wider font-bold flex items-center justify-center space-x-2.5 transition-all cursor-pointer backdrop-blur-md hover:border-white/30"
             >
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
               <span>Direct WhatsApp Fast-Track</span>
             </a>
           </div>
 
           {/* Transparency & Credibility Ribbon */}
-          <div className="pt-8 border-t border-zinc-800 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400">
-            <span className="flex items-center space-x-1.5">
-              <Check className="w-4 h-4 text-emerald-400" />
+          <div className="pt-8 border-t border-zinc-800/90 flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs text-zinc-300">
+            <span className="flex items-center space-x-2 font-medium">
+              <Check className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Complimentary 45-Min Growth Deep Dive</span>
             </span>
-            <span className="flex items-center space-x-1.5">
-              <Check className="w-4 h-4 text-emerald-400" />
+            <span className="flex items-center space-x-2 font-medium">
+              <Check className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Competitor & Keyword Intelligence Report Included</span>
             </span>
-            <span className="flex items-center space-x-1.5">
-              <Check className="w-4 h-4 text-emerald-400" />
+            <span className="flex items-center space-x-2 font-medium">
+              <Check className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Bangalore Headquarters & Global Reach</span>
             </span>
           </div>
