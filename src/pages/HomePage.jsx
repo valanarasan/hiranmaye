@@ -100,9 +100,9 @@ export default function HomePage({ setActivePage, onOpenConsultation }) {
       </section>
 
       {/* =========================================================================
-          NARRATIVE TRANSITION: The Growth Crossroads (Interactive Before vs After)
+          NARRATIVE TRANSITION: Marketing Stuck / Journey Comparison
           ========================================================================= */}
-      <section className="py-16 sm:py-24 px-4 sm:px-8 border-y border-zinc-100 bg-zinc-50/70 relative">
+      <section className="py-16 sm:py-24 px-4 sm:px-8 border-y border-zinc-800/80 bg-[#0e0f12] text-white relative">
         <div className="reveal">
           <GrowthCrossroadsInteractive onOpenConsultation={onOpenConsultation} />
         </div>
