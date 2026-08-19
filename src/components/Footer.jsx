@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
 import { companyDetails } from '../data/siteData';
 import Logo from './Logo';
-import { InstagramIcon, FacebookIcon, YoutubeIcon } from './SocialIcons';
+import { InstagramIcon, FacebookIcon, YoutubeIcon, LinkedinIcon, WhatsAppIcon } from './SocialIcons';
 
 export default function Footer({ setActivePage, onOpenConsultation }) {
   const navTo = (pageId) => {
@@ -27,9 +27,9 @@ export default function Footer({ setActivePage, onOpenConsultation }) {
               Digital growth agency. Strategy, AI, and performance marketing.
             </p>
             <div className="space-y-2 text-xs text-zinc-500">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-3.5 h-3.5 text-orange-650 shrink-0" />
-                <span>{companyDetails.address}</span>
+              <div className="flex items-start space-x-2">
+                <MapPin className="w-3.5 h-3.5 text-orange-650 shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{companyDetails.address}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-3.5 h-3.5 text-orange-650 shrink-0" />
@@ -45,43 +45,61 @@ export default function Footer({ setActivePage, onOpenConsultation }) {
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="flex items-center space-x-3 pt-2">
+            {/* Social Links with Original Logos */}
+            <div className="flex items-center space-x-2.5 pt-2">
               <a
                 href={companyDetails.socials.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-black/[0.02] border border-zinc-200 flex items-center justify-center text-zinc-600 hover:text-orange-600 hover:border-orange-500/30 transition-all"
+                className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 hover:scale-110 hover:border-pink-500/40 transition-all"
                 aria-label="Instagram"
               >
-                <InstagramIcon className="w-4 h-4" />
+                <InstagramIcon className="w-4 h-4" originalColor={true} />
+              </a>
+              <a
+                href={`https://wa.me/${companyDetails.whatsapp.replace(/[^0-9]/g, '')}?text=Hi%20Hiranmaye%20Digital%2C%20I%27d%20like%20to%20discuss%20our%20growth%20strategy`}
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 hover:scale-110 hover:border-emerald-500/40 transition-all"
+                aria-label="WhatsApp"
+              >
+                <WhatsAppIcon className="w-4 h-4" originalColor={true} />
+              </a>
+              <a
+                href={companyDetails.socials.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 hover:scale-110 hover:border-blue-500/40 transition-all"
+                aria-label="LinkedIn"
+              >
+                <LinkedinIcon className="w-4 h-4" originalColor={true} />
               </a>
               <a
                 href={companyDetails.socials.facebook}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-black/[0.02] border border-zinc-200 flex items-center justify-center text-zinc-600 hover:text-orange-600 hover:border-orange-500/30 transition-all"
+                className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 hover:scale-110 hover:border-indigo-500/40 transition-all"
                 aria-label="Facebook"
               >
-                <FacebookIcon className="w-4 h-4" />
+                <FacebookIcon className="w-4 h-4" originalColor={true} />
               </a>
               <a
                 href={companyDetails.socials.youtube}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-black/[0.02] border border-zinc-200 flex items-center justify-center text-zinc-600 hover:text-orange-600 hover:border-orange-500/30 transition-all"
+                className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 hover:scale-110 hover:border-red-500/40 transition-all"
                 aria-label="YouTube"
               >
-                <YoutubeIcon className="w-4 h-4" />
+                <YoutubeIcon className="w-4 h-4" originalColor={true} />
               </a>
               <a
                 href={companyDetails.socials.maps}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg bg-black/[0.02] border border-zinc-200 flex items-center justify-center text-zinc-600 hover:text-orange-600 hover:border-orange-500/30 transition-all"
+                className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 hover:scale-110 hover:border-orange-500/40 transition-all"
                 aria-label="Google Maps Location"
               >
-                <MapPin className="w-4 h-4" />
+                <MapPin className="w-4 h-4 text-orange-600" />
               </a>
             </div>
           </div>

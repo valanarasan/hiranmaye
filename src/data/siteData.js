@@ -4,7 +4,7 @@ export const companyDetails = {
   name: "HIRANMAYE DIGITAL",
   tagline: "Transforming Businesses into Market Leaders Through Strategic Digital Growth",
   heroSubHeading: "At HIRANMAYE DIGITAL, we combine strategy, creativity, AI-powered marketing, and performance-driven campaigns to help ambitious businesses generate qualified leads, strengthen their brand, and achieve sustainable growth.",
-  address: "HIRANMAYE DIGITAL — Bangalore, Karnataka, India",
+  address: "1053, 30th Main Rd, near Sri Hari Kalyana Mantapa, Siddanna Layout, Banashankari 2nd Stage, Banashankari, Bengaluru, Karnataka 560070",
   phone: "+91 99006 68383",
   email: "hiranmayemarketing@gmail.com",
   website: "www.hiranmayedigital.com",
@@ -15,10 +15,13 @@ export const companyDetails = {
     sunday: "Sunday: Closed"
   },
   socials: {
-    instagram: "https://www.instagram.com/Hiranmaye_Digital",
-    facebook: "https://www.facebook.com/hiranmayedigital",
+    instagram: "https://www.instagram.com/hiranmaye_digital",
+    facebook: "https://www.facebook.com/hiranmayedigital/",
     youtube: "https://www.youtube.com/@Hiranmaye_Digital",
-    maps: "https://maps.app.goo.gl/W3sgGPeEHgHCygt96"
+    linkedin: "https://www.linkedin.com/company/hiranmaye-digital",
+    whatsapp: "https://wa.me/919900668383",
+    maps: "https://maps.app.goo.gl/W3sgGPeEHgHCygt96",
+    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.6726752097325!2d77.56002367507568!3d12.928747087382732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15ac9c535569%3A0x54116009ca048b2e!2sHiranmaye%20Digital!5e0!3m2!1sen!2sin!4v1787122241068!5m2!1sen!2sin"
   },
   trustStrip: [
     "Startups",
